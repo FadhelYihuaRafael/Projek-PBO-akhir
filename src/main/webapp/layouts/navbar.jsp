@@ -1,0 +1,71 @@
+<%-- 
+    Document   : navbar
+    Created on : 17 Dec 2025, 17.46.49
+    Author     : Admin
+    Description: Sidebar/Navbar component
+--%>
+
+<aside class="left-sidebar">
+  <div>
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="dashboard.jsp" class="text-nowrap logo-img">
+        <img src="../assets/images/logos/logo-light.svg" alt="" />
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+      <ul id="sidebarnav">
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+          <span class="hide-menu">Home</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="dashboard.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+        
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+          <span class="hide-menu">UI COMPONENTS</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="ui-buttons.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Buttons</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="ui-alerts.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="solar:danger-circle-bold-duotone" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Alerts</span>
+          </a>
+        </li>
+        
+        <li class="nav-small-cap">
+          <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6"></iconify-icon>
+          <span class="hide-menu">AUTH</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="../login_1.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="solar:login-3-bold-duotone" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+

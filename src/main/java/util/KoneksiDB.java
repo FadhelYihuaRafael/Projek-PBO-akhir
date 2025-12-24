@@ -15,13 +15,19 @@ public class KoneksiDB {
 
     public static Connection getConnection() {
         try {
-            // Port 5432 dan database postgres
+            Class.forName("org.postgresql.Driver");
+            
             String url = "jdbc:postgresql://localhost:5433/hitung_hpp";
-            String user = "postgres";  // atau "riza" sesuai username Anda
+            String user = "postgres";
             String pass = "root";
+            
             Connection conn = DriverManager.getConnection(url, user, pass);
             System.out.println("Koneksi ke database postgres berhasil");
             return conn;
+        } catch (ClassNotFoundException e) {
+            System.err.println("Driver PostgreSQL tidak ditemukan! Pastikan dependency sudah ditambahkan di pom.xml");
+            e.printStackTrace();
+            return null;
         } catch (Exception e) {
             System.err.println("Koneksi gagal: " + e.getMessage());
             e.printStackTrace();

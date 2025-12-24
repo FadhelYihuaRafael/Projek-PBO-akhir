@@ -1,4 +1,11 @@
-Login\LoginServlet.class
+controller\LoginController.class
+model\KategoriMenu.class
+model\Supplier.class
+util\KoneksiDB.class
+model\BahanBaku.class
+model\Menu.class
+model\Resep.class
+dao\UserDAO.class
 kelompok_6\projek_pbo_akhir\resources\JakartaEE10Resource.class
 kelompok_6\projek_pbo_akhir\JakartaRestConfiguration.class
-util\KoneksiDB.class
+model\User.class

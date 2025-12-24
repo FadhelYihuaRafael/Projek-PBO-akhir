@@ -1,4 +1,11 @@
-C:\Users\fadhe\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\Login\LoginServlet.java
-C:\Users\fadhe\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\util\KoneksiDB.java
-C:\Users\fadhe\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\resources\JakartaEE10Resource.java
-C:\Users\fadhe\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\JakartaRestConfiguration.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Supplier.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\LoginController.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Resep.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\util\KoneksiDB.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\BahanBaku.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\UserDAO.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\JakartaRestConfiguration.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\resources\JakartaEE10Resource.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\KategoriMenu.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Menu.java
+C:\Users\Admin\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\User.java
