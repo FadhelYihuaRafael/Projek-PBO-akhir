@@ -33,22 +33,46 @@
         
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
-          <span class="hide-menu">Supplier</span>
+          <span class="hide-menu">Master Data</span>
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link" href="supplier.jsp" aria-expanded="false">
             <span>
-              <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+              <iconify-icon icon="mdi:truck-delivery" class="fs-6"></iconify-icon>
             </span>
-            <span class="hide-menu">Buttons</span>
+            <span class="hide-menu">Supplier</span>
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="ui-alerts.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="bahan-baku.jsp" aria-expanded="false">
             <span>
-              <iconify-icon icon="solar:danger-circle-bold-duotone" class="fs-6"></iconify-icon>
+              <iconify-icon icon="mdi:package-variant" class="fs-6"></iconify-icon>
             </span>
-            <span class="hide-menu">Alerts</span>
+            <span class="hide-menu">Bahan Baku</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="kategori-menu.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="mdi:folder-multiple" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Kategori Menu</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="menu.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="mdi:food" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Menu</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="resep.jsp" aria-expanded="false">
+            <span>
+              <iconify-icon icon="mdi:book-open-variant" class="fs-6"></iconify-icon>
+            </span>
+            <span class="hide-menu">Resep</span>
           </a>
         </li>
         
