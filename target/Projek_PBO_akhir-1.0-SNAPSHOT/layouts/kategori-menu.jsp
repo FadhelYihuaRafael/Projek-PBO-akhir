@@ -1,18 +1,136 @@
-<%-- Document : Kategori Menu Layout Created on : 17 Dec 2025 Author : Admin --%>
+<%-- 
+    Document   : Kategori Menu Layout
+    Created on : 17 Dec 2025
+    Author     : Admin
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<% // 1. Proteksi Halaman: Jika session kosong, tendang kembali ke login.jsp
-    if (session.getAttribute("username")==null) { 
+<%@page import="dao.KategoriMenuDAO"%>
+<%@page import="model.KategoriMenu"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    // cek session
+    if (session.getAttribute("username") == null) { 
         response.sendRedirect("../login.jsp"); 
         return; 
     } 
-    // 2. Ambil data dari session untuk ditampilkan di UI
-    String username=(String) session.getAttribute("username"); 
-    String role=(String) session.getAttribute("role");
-    // Set attribute untuk bisa diakses di included pages
+    
+    // ambil data session
+    String username = (String) session.getAttribute("username");
+    String role = (String) session.getAttribute("role");
+    Integer userId = (Integer) session.getAttribute("userId");
+    
+    // variabel untuk pesan
+    String successMsg = null;
+    String errorMsg = null;
+    
+    // buat object DAO
+    KategoriMenuDAO kategoriDAO = new KategoriMenuDAO();
+    
+    // handle POST request untuk tambah dan update
+    if ("POST".equals(request.getMethod())) {
+        String action = request.getParameter("action");
+        String nama = request.getParameter("nama");
+        String deskripsi = request.getParameter("deskripsi");
+        
+        if ("update".equals(action)) {
+            // update kategori
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                
+                KategoriMenu kategoriUpdate = new KategoriMenu();
+                kategoriUpdate.setId(id);
+                kategoriUpdate.setNama(nama);
+                kategoriUpdate.setDeskripsi(deskripsi);
+                
+                boolean updateOk = kategoriDAO.updateKategori(kategoriUpdate);
+                
+                if (updateOk) {
+                    successMsg = "Kategori menu berhasil diupdate!";
+                } else {
+                    errorMsg = "Gagal mengupdate kategori menu!";
+                }
+            } catch (NumberFormatException e) {
+                errorMsg = "Error: ID kategori tidak valid!";
+                e.printStackTrace();
+            } catch (Exception e) {
+                errorMsg = "Error: " + e.getMessage();
+                e.printStackTrace();
+            }
+        } else {
+            // tambah kategori baru
+            if (nama == null || nama.trim().isEmpty()) {
+                errorMsg = "Nama kategori tidak boleh kosong!";
+            } else if (userId == null) {
+                errorMsg = "Session expired! Silakan login kembali.";
+            } else {
+                try {
+                    KategoriMenu kategoriBaru = new KategoriMenu(
+                        nama.trim(), 
+                        deskripsi != null ? deskripsi.trim() : "", 
+                        userId
+                    );
+                    
+                    boolean tambahOk = kategoriDAO.tambahKategori(kategoriBaru);
+                    
+                    if (tambahOk) {
+                        successMsg = "Kategori menu berhasil ditambahkan!";
+                    } else {
+                        errorMsg = "Gagal menambahkan kategori menu!";
+                    }
+                } catch (Exception e) {
+                    errorMsg = "Error: " + e.getMessage();
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    // handle GET request untuk delete
+    String action = request.getParameter("action");
+    if ("delete".equals(action)) {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            boolean deleteOk = kategoriDAO.hapusKategori(id);
+            
+            if (deleteOk) {
+                successMsg = "Kategori menu berhasil dihapus!";
+            } else {
+                errorMsg = "Gagal menghapus kategori menu!";
+            }
+        } catch (NumberFormatException e) {
+            errorMsg = "Error: ID kategori tidak valid!";
+            e.printStackTrace();
+        } catch (Exception e) {
+            errorMsg = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    // ambil semua data kategori
+    List<KategoriMenu> listKategori = new ArrayList<>();
+    try {
+        listKategori = kategoriDAO.ambilSemuaKategori();
+        
+        if (listKategori == null) {
+            listKategori = new ArrayList<>();
+        }
+    } catch (Exception e) {
+        errorMsg = "Error mengambil data: " + e.getMessage();
+        e.printStackTrace();
+        listKategori = new ArrayList<>();
+    }
+    
+    // set attribute untuk diakses di halaman lain
+    request.setAttribute("daftarKategori", listKategori);
+    request.setAttribute("pesanSukses", successMsg);
+    request.setAttribute("pesanError", errorMsg);
     request.setAttribute("username", username);
     request.setAttribute("role", role);
 %>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,8 +143,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
-        data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
 
         <%-- Include Navbar/Sidebar --%>
         <jsp:include page="navbar.jsp" />
@@ -52,4 +169,3 @@
 </body>
 
 </html>
-

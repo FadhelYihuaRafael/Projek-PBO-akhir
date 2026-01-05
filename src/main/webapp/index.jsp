@@ -107,6 +107,16 @@
             padding: 5px;
             object-fit: cover;
         }
+        
+        /* Foto Alifa dan Faqih lebih besar */
+        .col-lg-5 .card-img-top {
+            width: 150px;
+            height: 150px;
+        }
+        
+        .col-lg-5 .avatar-wrapper {
+            margin-top: 15px;
+        }
 
         .nim-badge {
             background: #eef2ff;
@@ -234,56 +244,91 @@
     </section>
 
     <section id="tim" class="py-5">
-        <div class="container py-5 text-center">
-            <h2 class="fw-bold section-title">Anggota Kelompok Kami</h2>
-            <div class="row g-4 justify-content-center mt-4">
-                <div class="col-6 col-md-4 col-lg-2">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title">Anggota Kelompok Kami</h2>
+                <p class="text-muted">Tim yang berdedikasi untuk memberikan solusi terbaik</p>
+            </div>
+            
+            <!-- Semua Anggota dengan Ukuran Card Sama -->
+            <div class="row g-4 justify-content-center">
+                <!-- Riza (Ketua) di Sebelah Kiri -->
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm team-card">
-                        <div class="avatar-wrapper"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Anya" class="card-img-top"></div>
-                        <div class="card-body">
+                        <div class="card-body text-center p-3">
+                            <div class="avatar-wrapper mb-2">
+                                <img src="assets/images/profile/riza.jpeg" 
+                                     alt="Ahmad Riza Muzaki" 
+                                     class="card-img-top"
+                                     onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmad'; this.onerror=null;">
+                            </div>
                             <h6 class="fw-bold mb-1">Ahmad Riza Muzaki</h6>
                             <span class="nim-badge">0110224101</span>
-                            <p class="text-uppercase mb-0 fw-bold text-muted" style="font-size: 0.6rem;">Ketua</p>
+                            <p class="text-uppercase mb-0 fw-bold text-muted mt-1" style="font-size: 0.65rem;">Ketua</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <!-- Fadel di Tengah -->
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm team-card">
-                        <div class="avatar-wrapper"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="card-img-top"></div>
-                        <div class="card-body">
-                            <h6 class="fw-bold mb-1">Alifa Fazilatun Nisa</h6>
-                            <span class="nim-badge">0110224198</span>
-                            <p class="text-uppercase mb-0 fw-bold text-muted" style="font-size: 0.6rem;">Anggota</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card h-100 border-0 shadow-sm team-card">
-                        <div class="avatar-wrapper"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Budi" class="card-img-top"></div>
-                        <div class="card-body">
+                        <div class="card-body text-center p-3">
+                            <div class="avatar-wrapper mb-2">
+                                <img src="assets/images/profile/fadhel.jpeg" 
+                                     alt="Fadhel Yihua Rafael" 
+                                     class="card-img-top"
+                                     onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Fadhel'; this.onerror=null;">
+                            </div>
                             <h6 class="fw-bold mb-1">Fadhel Yihua Rafael</h6>
                             <span class="nim-badge">0110224147</span>
-                            <p class="text-uppercase mb-0 fw-bold text-muted" style="font-size: 0.6rem;">Anggota</p>
+                            <p class="text-uppercase mb-0 fw-bold text-muted mt-1" style="font-size: 0.65rem;">Anggota</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <!-- Rama di Sebelah Kanan -->
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm team-card">
-                        <div class="avatar-wrapper"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Maria" class="card-img-top"></div>
-                        <div class="card-body">
+                        <div class="card-body text-center p-3">
+                            <div class="avatar-wrapper mb-2">
+                                <img src="assets/images/profile/rama.jpeg" 
+                                     alt="Rama Aditia" 
+                                     class="card-img-top"
+                                     onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Rama'; this.onerror=null;">
+                            </div>
                             <h6 class="fw-bold mb-1">Rama Aditia</h6>
                             <span class="nim-badge">0110224160</span>
-                            <p class="text-uppercase mb-0 fw-bold text-muted" style="font-size: 0.6rem;">Anggota</p>
+                            <p class="text-uppercase mb-0 fw-bold text-muted mt-1" style="font-size: 0.65rem;">Anggota</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <!-- Alifa -->
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm team-card">
-                        <div class="avatar-wrapper"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin" class="card-img-top"></div>
-                        <div class="card-body">
+                        <div class="card-body text-center p-3">
+                            <div class="avatar-wrapper mb-2">
+                                <img src="assets/images/profile/alifa.jpeg" 
+                                     alt="Alifa Fazilatun Nisa" 
+                                     class="card-img-top"
+                                     onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Alifa'; this.onerror=null;">
+                            </div>
+                            <h6 class="fw-bold mb-1">Alifa Fazilatun Nisa</h6>
+                            <span class="nim-badge">0110224198</span>
+                            <p class="text-uppercase mb-0 fw-bold text-muted mt-1" style="font-size: 0.65rem;">Anggota</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Faqih -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm team-card">
+                        <div class="card-body text-center p-3">
+                            <div class="avatar-wrapper mb-2">
+                                <img src="assets/images/profile/faqih.jpeg" 
+                                     alt="Muhammad Faqih Rayya" 
+                                     class="card-img-top"
+                                     onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Faqih'; this.onerror=null;">
+                            </div>
                             <h6 class="fw-bold mb-1">Muhammad Faqih Rayya</h6>
                             <span class="nim-badge">0110224212</span>
-                            <p class="text-uppercase mb-0 fw-bold text-muted" style="font-size: 0.6rem;">Anggota</p>
+                            <p class="text-uppercase mb-0 fw-bold text-muted mt-1" style="font-size: 0.65rem;">Anggota</p>
                         </div>
                     </div>
                 </div>

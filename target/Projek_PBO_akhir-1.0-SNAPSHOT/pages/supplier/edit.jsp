@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Supplier"%>
 <%
     // Proteksi Halaman
     if (session.getAttribute("username") == null) {
@@ -15,6 +16,13 @@
     // Ambil data dari session
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
+    
+    // Ambil data supplier dari controller
+    Supplier supplier = (Supplier) request.getAttribute("supplier");
+    if (supplier == null) {
+        response.sendRedirect("../../pages/supplier.jsp?error=notfound");
+        return;
+    }
     
     // Set attribute untuk bisa diakses di included pages
     request.setAttribute("username", username);
@@ -32,8 +40,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
-        data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
 
         <%-- Include Navbar/Sidebar --%>
         <jsp:include page="../../layouts/navbar.jsp" />
@@ -49,22 +56,26 @@
                             <div class="card-body">
                                 <h5 class="card-title fw-semibold mb-4">Edit Supplier</h5>
                                 
-                                <form method="post" action="#">
+                                <form method="post" action="../../SupplierController">
+                                    <input type="hidden" name="action" value="update">
+                                    <input type="hidden" name="id" value="<%= supplier.getId() %>">
+                                    <input type="hidden" name="returnUrl" value="../../SupplierController">
+                                    
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama Supplier</label>
                                         <input type="text" class="form-control" id="nama" name="nama" 
-                                               value="PT Sumber Makmur" required>
+                                               value="<%= supplier.getNama() != null ? supplier.getNama() : "" %>" required>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="telepon" class="form-label">Nomor Telepon</label>
                                         <input type="text" class="form-control" id="telepon" name="telepon" 
-                                               value="081234567890" required>
+                                               value="<%= supplier.getTelepon() != null ? supplier.getTelepon() : "" %>" required>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="alamat" class="form-label">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" rows="3" required>Jakarta Selatan</textarea>
+                                        <textarea class="form-control" id="alamat" name="alamat" rows="3" required><%= supplier.getAlamat() != null ? supplier.getAlamat() : "" %></textarea>
                                     </div>
                                     
                                     <div class="d-flex gap-2">
@@ -72,7 +83,7 @@
                                             <iconify-icon icon="mdi:content-save"></iconify-icon>
                                             Simpan Perubahan
                                         </button>
-                                        <a href="../../layouts/supplier.jsp" class="btn btn-secondary">
+                                        <a href="../../SupplierController" class="btn btn-secondary">
                                             <iconify-icon icon="mdi:cancel"></iconify-icon>
                                             Batal
                                         </a>

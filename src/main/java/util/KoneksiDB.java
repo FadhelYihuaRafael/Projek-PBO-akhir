@@ -19,7 +19,7 @@ public class KoneksiDB {
             
             String url = "jdbc:postgresql://localhost:5432/hitung_hpp";
             String user = "postgres";
-            String pass = "fadel";
+            String pass = "root";
             
             Connection conn = DriverManager.getConnection(url, user, pass);
             System.out.println("Koneksi ke database postgres berhasil");
