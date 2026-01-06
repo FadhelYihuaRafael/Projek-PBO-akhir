@@ -10,7 +10,7 @@ import java.util.List;
 
 public class KategoriMenuDAO {
     
-    public List<KategoriMenu> ambilSemuaKategori() {
+    public List<KategoriMenu> getAll() {
         List<KategoriMenu> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -93,7 +93,7 @@ public class KategoriMenuDAO {
         return kategori;
     }
     
-    public boolean tambahKategori(KategoriMenu kategori) {
+    public boolean insert(KategoriMenu kategori) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -127,7 +127,7 @@ public class KategoriMenuDAO {
         }
     }
     
-    public boolean updateKategori(KategoriMenu kategori) {
+    public boolean update(KategoriMenu kategori) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -161,7 +161,7 @@ public class KategoriMenuDAO {
         }
     }
     
-    public boolean hapusKategori(Integer id) {
+    public boolean delete(Integer id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         

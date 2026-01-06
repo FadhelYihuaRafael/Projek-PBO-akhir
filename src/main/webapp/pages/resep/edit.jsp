@@ -45,7 +45,7 @@
     List<Menu> listMenu = new ArrayList<>();
     try {
         MenuDAO menuDAO = new MenuDAO();
-        listMenu = menuDAO.ambilSemuaMenu();
+        listMenu = menuDAO.getAll();
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -54,7 +54,7 @@
     List<BahanBaku> listBahan = new ArrayList<>();
     try {
         BahanBakuDAO bahanDAO = new BahanBakuDAO();
-        listBahan = bahanDAO.ambilSemuaBahanBaku();
+        listBahan = bahanDAO.getAll();
     } catch (Exception e) {
         e.printStackTrace();
     }

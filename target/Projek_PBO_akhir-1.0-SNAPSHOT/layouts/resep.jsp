@@ -55,7 +55,7 @@
                 resepUpdate.setBahanBakuId(bahanBakuId);
                 resepUpdate.setJumlahDibutuhkan(jumlah);
                 
-                boolean updateOk = resepDAO.updateResep(resepUpdate);
+                boolean updateOk = resepDAO.update(resepUpdate);
                 
                 if (updateOk) {
                     successMsg = "Resep berhasil diupdate!";
@@ -95,7 +95,7 @@
                             userId
                         );
                         
-                        boolean tambahOk = resepDAO.tambahResep(resepBaru);
+                        boolean tambahOk = resepDAO.insert(resepBaru);
                         
                         if (tambahOk) {
                             successMsg = "Resep berhasil ditambahkan!";
@@ -120,7 +120,7 @@
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            boolean deleteOk = resepDAO.hapusResep(id);
+            boolean deleteOk = resepDAO.delete(id);
             
             if (deleteOk) {
                 successMsg = "Resep berhasil dihapus!";
@@ -139,7 +139,7 @@
     // ambil semua data resep
     List<Resep> listResep = new ArrayList<>();
     try {
-        listResep = resepDAO.ambilSemuaResep();
+        listResep = resepDAO.getAll();
         
         if (listResep == null) {
             listResep = new ArrayList<>();
@@ -153,7 +153,7 @@
     // ambil semua menu untuk dropdown
     List<Menu> listMenu = new ArrayList<>();
     try {
-        listMenu = menuDAO.ambilSemuaMenu();
+        listMenu = menuDAO.getAll();
         if (listMenu == null) {
             listMenu = new ArrayList<>();
         }
@@ -165,7 +165,7 @@
     // ambil semua bahan baku untuk dropdown
     List<BahanBaku> listBahan = new ArrayList<>();
     try {
-        listBahan = bahanDAO.ambilSemuaBahanBaku();
+        listBahan = bahanDAO.getAll();
         if (listBahan == null) {
             listBahan = new ArrayList<>();
         }

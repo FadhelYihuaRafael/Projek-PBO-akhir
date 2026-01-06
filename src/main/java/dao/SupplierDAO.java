@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SupplierDAO {
     
-    public boolean tambahSupplier(Supplier supplier) {
+    public boolean insert(Supplier supplier) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -45,7 +45,7 @@ public class SupplierDAO {
         }
     }
     
-    public List<Supplier> ambilSemuaSupplier() {
+    public List<Supplier> getAll() {
         List<Supplier> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -130,7 +130,7 @@ public class SupplierDAO {
         return supplier;
     }
     
-    public boolean updateSupplier(Supplier supplier) {
+    public boolean update(Supplier supplier) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -165,7 +165,7 @@ public class SupplierDAO {
         }
     }
     
-    public boolean hapusSupplier(Integer id) {
+    public boolean delete(Integer id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         

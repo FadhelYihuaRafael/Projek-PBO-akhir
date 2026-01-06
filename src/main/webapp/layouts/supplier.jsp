@@ -46,7 +46,7 @@
                 supplierUpdate.setTelepon(telepon);
                 supplierUpdate.setAlamat(alamat);
                 
-                boolean updateSuccess = supplierDAO.updateSupplier(supplierUpdate);
+                boolean updateSuccess = supplierDAO.update(supplierUpdate);
                 
                 if (updateSuccess) {
                     successMessage = "Supplier berhasil diupdate!";
@@ -79,7 +79,7 @@
                         userId
                     );
                     
-                    boolean tambahSuccess = supplierDAO.tambahSupplier(supplierBaru);
+                    boolean tambahSuccess = supplierDAO.insert(supplierBaru);
                     
                     if (tambahSuccess) {
                         successMessage = "Supplier berhasil ditambahkan!";
@@ -100,7 +100,7 @@
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            boolean deleteSuccess = supplierDAO.hapusSupplier(id);
+            boolean deleteSuccess = supplierDAO.delete(id);
             
             if (deleteSuccess) {
                 successMessage = "Supplier berhasil dihapus!";
@@ -119,7 +119,7 @@
     // ambil semua data supplier
     List<Supplier> listSupplier = new ArrayList<>();
     try {
-        listSupplier = supplierDAO.ambilSemuaSupplier();
+        listSupplier = supplierDAO.getAll();
         
         if (listSupplier == null) {
             listSupplier = new ArrayList<>();

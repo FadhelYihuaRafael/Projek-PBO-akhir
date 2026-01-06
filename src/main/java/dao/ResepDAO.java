@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ResepDAO {
     
-    public boolean tambahResep(Resep resep) {
+    public boolean insert(Resep resep) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -45,7 +45,7 @@ public class ResepDAO {
         }
     }
     
-    public List<Resep> ambilSemuaResep() {
+    public List<Resep> getAll() {
         List<Resep> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -130,7 +130,7 @@ public class ResepDAO {
         return resep;
     }
     
-    public boolean updateResep(Resep resep) {
+    public boolean update(Resep resep) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -165,7 +165,7 @@ public class ResepDAO {
         }
     }
     
-    public boolean hapusResep(Integer id) {
+    public boolean delete(Integer id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         

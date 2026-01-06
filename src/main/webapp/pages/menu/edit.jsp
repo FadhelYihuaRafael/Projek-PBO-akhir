@@ -43,7 +43,7 @@
     List<KategoriMenu> listKategori = new ArrayList<>();
     try {
         KategoriMenuDAO kategoriDAO = new KategoriMenuDAO();
-        listKategori = kategoriDAO.ambilSemuaKategori();
+        listKategori = kategoriDAO.getAll();
     } catch (Exception e) {
         e.printStackTrace();
     }

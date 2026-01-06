@@ -56,7 +56,7 @@
                 bahanUpdate.setHargaPerSatuan(harga);
                 bahanUpdate.setStok(stok);
                 
-                boolean updateOk = bahanDAO.updateBahanBaku(bahanUpdate);
+                boolean updateOk = bahanDAO.update(bahanUpdate);
                 
                 if (updateOk) {
                     successMsg = "Bahan baku berhasil diupdate!";
@@ -104,7 +104,7 @@
                             userId
                         );
                         
-                        boolean tambahOk = bahanDAO.tambahBahanBaku(bahanBaru);
+                        boolean tambahOk = bahanDAO.insert(bahanBaru);
                         
                         if (tambahOk) {
                             successMsg = "Bahan baku berhasil ditambahkan!";
@@ -129,7 +129,7 @@
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            boolean deleteOk = bahanDAO.hapusBahanBaku(id);
+            boolean deleteOk = bahanDAO.delete(id);
             
             if (deleteOk) {
                 successMsg = "Bahan baku berhasil dihapus!";
@@ -148,7 +148,7 @@
     // ambil semua data bahan baku
     List<BahanBaku> listBahan = new ArrayList<>();
     try {
-        listBahan = bahanDAO.ambilSemuaBahanBaku();
+        listBahan = bahanDAO.getAll();
         
         if (listBahan == null) {
             listBahan = new ArrayList<>();
@@ -162,7 +162,7 @@
     // ambil semua supplier untuk dropdown
     List<Supplier> listSupplier = new ArrayList<>();
     try {
-        listSupplier = supplierDAO.ambilSemuaSupplier();
+        listSupplier = supplierDAO.getAll();
         if (listSupplier == null) {
             listSupplier = new ArrayList<>();
         }

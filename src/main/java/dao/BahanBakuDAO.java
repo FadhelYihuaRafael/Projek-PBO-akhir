@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BahanBakuDAO {
     
-    public List<BahanBaku> ambilSemuaBahanBaku() {
+    public List<BahanBaku> getAll() {
         List<BahanBaku> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -99,7 +99,7 @@ public class BahanBakuDAO {
         return bahan;
     }
     
-    public boolean tambahBahanBaku(BahanBaku bahan) {
+    public boolean insert(BahanBaku bahan) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -136,7 +136,7 @@ public class BahanBakuDAO {
         }
     }
     
-    public boolean updateBahanBaku(BahanBaku bahan) {
+    public boolean update(BahanBaku bahan) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -173,7 +173,7 @@ public class BahanBakuDAO {
         }
     }
     
-    public boolean hapusBahanBaku(Integer id) {
+    public boolean delete(Integer id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         

@@ -43,7 +43,7 @@
     List<Supplier> listSupplier = new ArrayList<>();
     try {
         SupplierDAO supplierDAO = new SupplierDAO();
-        listSupplier = supplierDAO.ambilSemuaSupplier();
+        listSupplier = supplierDAO.getAll();
     } catch (Exception e) {
         e.printStackTrace();
     }

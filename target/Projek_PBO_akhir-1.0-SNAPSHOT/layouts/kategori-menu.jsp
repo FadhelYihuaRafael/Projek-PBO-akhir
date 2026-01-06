@@ -44,7 +44,7 @@
                 kategoriUpdate.setNama(nama);
                 kategoriUpdate.setDeskripsi(deskripsi);
                 
-                boolean updateOk = kategoriDAO.updateKategori(kategoriUpdate);
+                boolean updateOk = kategoriDAO.update(kategoriUpdate);
                 
                 if (updateOk) {
                     successMsg = "Kategori menu berhasil diupdate!";
@@ -72,7 +72,7 @@
                         userId
                     );
                     
-                    boolean tambahOk = kategoriDAO.tambahKategori(kategoriBaru);
+                    boolean tambahOk = kategoriDAO.insert(kategoriBaru);
                     
                     if (tambahOk) {
                         successMsg = "Kategori menu berhasil ditambahkan!";
@@ -93,7 +93,7 @@
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            boolean deleteOk = kategoriDAO.hapusKategori(id);
+            boolean deleteOk = kategoriDAO.delete(id);
             
             if (deleteOk) {
                 successMsg = "Kategori menu berhasil dihapus!";
@@ -112,7 +112,7 @@
     // ambil semua data kategori
     List<KategoriMenu> listKategori = new ArrayList<>();
     try {
-        listKategori = kategoriDAO.ambilSemuaKategori();
+        listKategori = kategoriDAO.getAll();
         
         if (listKategori == null) {
             listKategori = new ArrayList<>();

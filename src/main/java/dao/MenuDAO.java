@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MenuDAO {
     
-    public boolean tambahMenu(Menu menu) {
+    public boolean insert(Menu menu) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -46,7 +46,7 @@ public class MenuDAO {
         }
     }
     
-    public List<Menu> ambilSemuaMenu() {
+    public List<Menu> getAll() {
         List<Menu> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -133,7 +133,7 @@ public class MenuDAO {
         return menu;
     }
     
-    public boolean updateMenu(Menu menu) {
+    public boolean update(Menu menu) {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -169,7 +169,7 @@ public class MenuDAO {
         }
     }
     
-    public boolean hapusMenu(Integer id) {
+    public boolean delete(Integer id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         

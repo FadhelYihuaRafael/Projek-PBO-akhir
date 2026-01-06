@@ -51,7 +51,7 @@
                 menuUpdate.setHargaJual(hargaJual);
                 menuUpdate.setDeskripsi(deskripsi);
                 
-                boolean updateSuccess = menuDAO.updateMenu(menuUpdate);
+                boolean updateSuccess = menuDAO.update(menuUpdate);
                 
                 if (updateSuccess) {
                     successMessage = "Menu berhasil diupdate!";
@@ -87,7 +87,7 @@
                         userId
                     );
                     
-                    boolean tambahSuccess = menuDAO.tambahMenu(menuBaru);
+                    boolean tambahSuccess = menuDAO.insert(menuBaru);
                     
                     if (tambahSuccess) {
                         successMessage = "Menu berhasil ditambahkan!";
@@ -110,7 +110,7 @@
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            boolean deleteSuccess = menuDAO.hapusMenu(id);
+            boolean deleteSuccess = menuDAO.delete(id);
             
             if (deleteSuccess) {
                 successMessage = "Menu berhasil dihapus!";
@@ -128,7 +128,7 @@
     
     List<Menu> listMenu = new ArrayList<>();
     try {
-        listMenu = menuDAO.ambilSemuaMenu();
+        listMenu = menuDAO.getAll();
         
         if (listMenu == null) {
             listMenu = new ArrayList<>();
@@ -141,7 +141,7 @@
     
     List<KategoriMenu> listKategori = new ArrayList<>();
     try {
-        listKategori = kategoriDAO.ambilSemuaKategori();
+        listKategori = kategoriDAO.getAll();
         if (listKategori == null) {
             listKategori = new ArrayList<>();
         }
