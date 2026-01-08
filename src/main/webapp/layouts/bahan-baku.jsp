@@ -5,8 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="dao.BahanBakuDAO"%>
-<%@page import="dao.SupplierDAO"%>
 <%@page import="model.BahanBaku"%>
 <%@page import="model.Supplier"%>
 <%@page import="java.util.List"%>
@@ -21,154 +19,18 @@
     // ambil data session
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
-    Integer userId = (Integer) session.getAttribute("userId");
     
-    // variabel untuk pesan
-    String successMsg = null;
-    String errorMsg = null;
+    // Ambil data dari request attribute yang dikirim oleh controller
+    // Jika tidak ada, berarti akses langsung ke JSP, redirect ke controller
+    List<BahanBaku> listBahan = (List<BahanBaku>) request.getAttribute("daftarBahan");
+    List<Supplier> listSupplier = (List<Supplier>) request.getAttribute("daftarSupplier");
+    String successMsg = (String) request.getAttribute("pesanSukses");
+    String errorMsg = (String) request.getAttribute("pesanError");
     
-    // buat object DAO
-    BahanBakuDAO bahanDAO = new BahanBakuDAO();
-    SupplierDAO supplierDAO = new SupplierDAO();
-    
-    // handle POST request untuk tambah dan update
-    if ("POST".equals(request.getMethod())) {
-        String action = request.getParameter("action");
-        String namaBahan = request.getParameter("namaBahan");
-        String supplierIdStr = request.getParameter("supplierId");
-        String satuan = request.getParameter("satuan");
-        String hargaStr = request.getParameter("harga");
-        String stokStr = request.getParameter("stok");
-        
-        if ("update".equals(action)) {
-            // update bahan baku
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int supplierId = Integer.parseInt(supplierIdStr);
-                float harga = Float.parseFloat(hargaStr);
-                int stok = Integer.parseInt(stokStr);
-                
-                BahanBaku bahanUpdate = new BahanBaku();
-                bahanUpdate.setId(id);
-                bahanUpdate.setSupplierId(supplierId);
-                bahanUpdate.setNamaBahan(namaBahan);
-                bahanUpdate.setSatuan(satuan);
-                bahanUpdate.setHargaPerSatuan(harga);
-                bahanUpdate.setStok(stok);
-                
-                boolean updateOk = bahanDAO.update(bahanUpdate);
-                
-                if (updateOk) {
-                    successMsg = "Bahan baku berhasil diupdate!";
-                } else {
-                    errorMsg = "Gagal mengupdate bahan baku!";
-                }
-            } catch (NumberFormatException e) {
-                errorMsg = "Error: Data tidak valid!";
-                e.printStackTrace();
-            } catch (Exception e) {
-                errorMsg = "Error: " + e.getMessage();
-                e.printStackTrace();
-            }
-        } else {
-            // tambah bahan baku baru
-            if (namaBahan == null || namaBahan.trim().isEmpty()) {
-                errorMsg = "Nama bahan tidak boleh kosong!";
-            } else if (supplierIdStr == null || supplierIdStr.trim().isEmpty()) {
-                errorMsg = "Supplier harus dipilih!";
-            } else if (satuan == null || satuan.trim().isEmpty()) {
-                errorMsg = "Satuan tidak boleh kosong!";
-            } else if (hargaStr == null || hargaStr.trim().isEmpty()) {
-                errorMsg = "Harga tidak boleh kosong!";
-            } else if (stokStr == null || stokStr.trim().isEmpty()) {
-                errorMsg = "Stok tidak boleh kosong!";
-            } else if (userId == null) {
-                errorMsg = "Session expired! Silakan login kembali.";
-            } else {
-                try {
-                    int supplierId = Integer.parseInt(supplierIdStr);
-                    float harga = Float.parseFloat(hargaStr);
-                    int stok = Integer.parseInt(stokStr);
-                    
-                    if (harga <= 0) {
-                        errorMsg = "Harga harus lebih dari 0!";
-                    } else if (stok < 0) {
-                        errorMsg = "Stok tidak boleh negatif!";
-                    } else {
-                        BahanBaku bahanBaru = new BahanBaku(
-                            supplierId,
-                            namaBahan.trim(), 
-                            satuan.trim(), 
-                            harga, 
-                            stok, 
-                            userId
-                        );
-                        
-                        boolean tambahOk = bahanDAO.insert(bahanBaru);
-                        
-                        if (tambahOk) {
-                            successMsg = "Bahan baku berhasil ditambahkan!";
-                        } else {
-                            errorMsg = "Gagal menambahkan bahan baku!";
-                        }
-                    }
-                } catch (NumberFormatException e) {
-                    errorMsg = "Error: Data tidak valid!";
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    errorMsg = "Error: " + e.getMessage();
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    
-    // handle GET request untuk delete
-    String action = request.getParameter("action");
-    if ("delete".equals(action)) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            boolean deleteOk = bahanDAO.delete(id);
-            
-            if (deleteOk) {
-                successMsg = "Bahan baku berhasil dihapus!";
-            } else {
-                errorMsg = "Gagal menghapus bahan baku!";
-            }
-        } catch (NumberFormatException e) {
-            errorMsg = "Error: ID bahan baku tidak valid!";
-            e.printStackTrace();
-        } catch (Exception e) {
-            errorMsg = "Error: " + e.getMessage();
-            e.printStackTrace();
-        }
-    }
-    
-    // ambil semua data bahan baku
-    List<BahanBaku> listBahan = new ArrayList<>();
-    try {
-        listBahan = bahanDAO.getAll();
-        
-        if (listBahan == null) {
-            listBahan = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        errorMsg = "Error mengambil data: " + e.getMessage();
-        e.printStackTrace();
-        listBahan = new ArrayList<>();
-    }
-    
-    // ambil semua supplier untuk dropdown
-    List<Supplier> listSupplier = new ArrayList<>();
-    try {
-        listSupplier = supplierDAO.getAll();
-        if (listSupplier == null) {
-            listSupplier = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        listSupplier = new ArrayList<>();
+    // Jika data tidak ada dari controller, redirect ke controller
+    if (listBahan == null) {
+        response.sendRedirect("BahanBakuController");
+        return;
     }
     
     // set attribute untuk diakses di halaman lain

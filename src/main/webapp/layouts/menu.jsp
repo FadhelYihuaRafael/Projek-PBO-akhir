@@ -5,9 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="dao.MenuDAO"%>
-<%@page import="dao.KategoriMenuDAO"%>
-<%@page import="dao.ResepDAO"%>
 <%@page import="model.Menu"%>
 <%@page import="model.KategoriMenu"%>
 <%@page import="java.util.List"%>
@@ -22,132 +19,18 @@
     // ambil data session
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
-    Integer userId = (Integer) session.getAttribute("userId");
     
-    String successMessage = null;
-    String errorMessage = null;
+    // Ambil data dari request attribute yang dikirim oleh controller
+    // Jika tidak ada, berarti akses langsung ke JSP, redirect ke controller
+    List<Menu> listMenu = (List<Menu>) request.getAttribute("daftarMenu");
+    List<KategoriMenu> listKategori = (List<KategoriMenu>) request.getAttribute("daftarKategori");
+    String successMessage = (String) request.getAttribute("pesanSukses");
+    String errorMessage = (String) request.getAttribute("pesanError");
     
-    MenuDAO menuDAO = new MenuDAO();
-    KategoriMenuDAO kategoriDAO = new KategoriMenuDAO();
-    ResepDAO resepDAO = new ResepDAO();
-    
-    if ("POST".equals(request.getMethod())) {
-        String action = request.getParameter("action");
-        String namaMenu = request.getParameter("namaMenu");
-        String hargaJualStr = request.getParameter("hargaJual");
-        String deskripsi = request.getParameter("deskripsi");
-        String kategoriIdStr = request.getParameter("kategoriId");
-        
-        if ("update".equals(action)) {
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int kategoriId = Integer.parseInt(kategoriIdStr);
-                int hargaJual = Integer.parseInt(hargaJualStr);
-                
-                Menu menuUpdate = new Menu();
-                menuUpdate.setId(id);
-                menuUpdate.setKategoriId(kategoriId);
-                menuUpdate.setNamaMenu(namaMenu);
-                menuUpdate.setHargaJual(hargaJual);
-                menuUpdate.setDeskripsi(deskripsi);
-                
-                boolean updateSuccess = menuDAO.update(menuUpdate);
-                
-                if (updateSuccess) {
-                    successMessage = "Menu berhasil diupdate!";
-                } else {
-                    errorMessage = "Gagal mengupdate menu!";
-                }
-            } catch (NumberFormatException e) {
-                errorMessage = "Error: Data tidak valid!";
-                e.printStackTrace();
-            } catch (Exception e) {
-                errorMessage = "Error: " + e.getMessage();
-                e.printStackTrace();
-            }
-        } else {
-            if (namaMenu == null || namaMenu.trim().isEmpty()) {
-                errorMessage = "Nama menu tidak boleh kosong!";
-            } else if (hargaJualStr == null || hargaJualStr.trim().isEmpty()) {
-                errorMessage = "Harga jual tidak boleh kosong!";
-            } else if (kategoriIdStr == null || kategoriIdStr.trim().isEmpty()) {
-                errorMessage = "Kategori harus dipilih!";
-            } else if (userId == null) {
-                errorMessage = "Session expired! Silakan login kembali.";
-            } else {
-                try {
-                    int kategoriId = Integer.parseInt(kategoriIdStr);
-                    int hargaJual = Integer.parseInt(hargaJualStr);
-                    
-                    Menu menuBaru = new Menu(
-                        kategoriId,
-                        namaMenu.trim(), 
-                        hargaJual, 
-                        deskripsi != null ? deskripsi.trim() : "",
-                        userId
-                    );
-                    
-                    boolean tambahSuccess = menuDAO.insert(menuBaru);
-                    
-                    if (tambahSuccess) {
-                        successMessage = "Menu berhasil ditambahkan!";
-                    } else {
-                        errorMessage = "Gagal menambahkan menu!";
-                    }
-                } catch (NumberFormatException e) {
-                    errorMessage = "Error: Harga jual atau kategori tidak valid!";
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    errorMessage = "Error: " + e.getMessage();
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    
-    String action = request.getParameter("action");
-    if ("delete".equals(action)) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            boolean deleteSuccess = menuDAO.delete(id);
-            
-            if (deleteSuccess) {
-                successMessage = "Menu berhasil dihapus!";
-            } else {
-                errorMessage = "Gagal menghapus menu!";
-            }
-        } catch (NumberFormatException e) {
-            errorMessage = "Error: ID menu tidak valid!";
-            e.printStackTrace();
-        } catch (Exception e) {
-            errorMessage = "Error: " + e.getMessage();
-            e.printStackTrace();
-        }
-    }
-    
-    List<Menu> listMenu = new ArrayList<>();
-    try {
-        listMenu = menuDAO.getAll();
-        
-        if (listMenu == null) {
-            listMenu = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        errorMessage = "Error mengambil data: " + e.getMessage();
-        e.printStackTrace();
-        listMenu = new ArrayList<>();
-    }
-    
-    List<KategoriMenu> listKategori = new ArrayList<>();
-    try {
-        listKategori = kategoriDAO.getAll();
-        if (listKategori == null) {
-            listKategori = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        listKategori = new ArrayList<>();
+    // Jika data tidak ada dari controller, redirect ke controller
+    if (listMenu == null) {
+        response.sendRedirect("MenuController");
+        return;
     }
     
     request.setAttribute("daftarMenu", listMenu);

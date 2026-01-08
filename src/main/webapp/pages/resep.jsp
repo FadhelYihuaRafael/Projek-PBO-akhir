@@ -32,7 +32,7 @@
     
     // untuk URL
     String contextPath = request.getContextPath();
-    String resepUrl = contextPath + "/layouts/resep.jsp";
+    String resepUrl = contextPath + "/ResepController";
 %>
 <div class="container-fluid">
     <div class="row">

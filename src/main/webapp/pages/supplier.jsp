@@ -23,7 +23,7 @@
     
     // untuk URL
     String contextPath = request.getContextPath();
-    String supplierUrl = contextPath + "/layouts/supplier.jsp";
+    String supplierUrl = contextPath + "/SupplierController";
 %>
 
 <div class="container-fluid">

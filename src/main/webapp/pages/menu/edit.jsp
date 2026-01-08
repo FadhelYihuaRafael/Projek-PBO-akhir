@@ -82,11 +82,11 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Menu tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/menu.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../MenuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Edit Menu</h5>
                                     
-                                    <form method="post" action="../../layouts/menu.jsp">
+                                    <form method="post" action="../../MenuController">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="id" value="<%= menu.getId() %>">
                                         
@@ -123,7 +123,7 @@
                                                 <iconify-icon icon="mdi:content-save"></iconify-icon>
                                                 Simpan Perubahan
                                             </button>
-                                            <a href="../../layouts/menu.jsp" class="btn btn-secondary">
+                                            <a href="../../MenuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

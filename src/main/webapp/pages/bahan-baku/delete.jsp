@@ -78,7 +78,7 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Bahan baku tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/bahan-baku.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../BahanBakuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Hapus Bahan Baku</h5>
                                     
@@ -96,7 +96,7 @@
                                         <p><strong>Stok:</strong> <%= bahan.getStok() != null ? bahan.getStok() : "-" %></p>
                                     </div>
                                     
-                                    <form method="get" action="../../layouts/bahan-baku.jsp">
+                                    <form method="get" action="../../BahanBakuController">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<%= bahan.getId() %>">
                                         <div class="d-flex gap-2">
@@ -104,7 +104,7 @@
                                                 <iconify-icon icon="mdi:delete"></iconify-icon>
                                                 Ya, Hapus
                                             </button>
-                                            <a href="../../layouts/bahan-baku.jsp" class="btn btn-secondary">
+                                            <a href="../../BahanBakuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

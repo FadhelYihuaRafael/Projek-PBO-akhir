@@ -27,7 +27,7 @@
     
     // untuk URL
     String contextPath = request.getContextPath();
-    String bahanUrl = contextPath + "/layouts/bahan-baku.jsp";
+    String bahanUrl = contextPath + "/BahanBakuController";
 %>
 <div class="container-fluid">
     <div class="row">
@@ -141,7 +141,7 @@
                 <h5 class="modal-title" id="modalTambahBahanLabel">Tambah Bahan Baku Baru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<%= bahanUrl %>" id="formTambahBahan">
+            <form method="post" action="<%= contextPath %>/BahanBakuController" id="formTambahBahan">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="supplierIdBaru" class="form-label">

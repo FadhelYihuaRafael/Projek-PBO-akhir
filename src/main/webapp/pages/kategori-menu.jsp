@@ -22,7 +22,7 @@
     
     // untuk URL
     String contextPath = request.getContextPath();
-    String kategoriUrl = contextPath + "/layouts/kategori-menu.jsp";
+    String kategoriUrl = contextPath + "/KategoriMenuController";
 %>
 <div class="container-fluid">
     <div class="row">

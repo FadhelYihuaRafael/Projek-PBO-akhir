@@ -20,7 +20,7 @@
     if (listKategori == null) listKategori = new ArrayList<>();
     
     String contextPath = request.getContextPath();
-    String menuUrl = contextPath + "/layouts/menu.jsp";
+    String menuUrl = contextPath + "/MenuController";
     ResepDAO resepDAO = new ResepDAO();
 %>
 <div class="container-fluid">

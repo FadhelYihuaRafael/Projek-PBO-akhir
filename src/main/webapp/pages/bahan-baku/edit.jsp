@@ -82,11 +82,11 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Bahan baku tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/bahan-baku.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../BahanBakuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Edit Bahan Baku</h5>
                                     
-                                    <form method="post" action="../../layouts/bahan-baku.jsp">
+                                    <form method="post" action="../../BahanBakuController">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="id" value="<%= bahan.getId() %>">
                                         
@@ -128,7 +128,7 @@
                                                 <iconify-icon icon="mdi:content-save"></iconify-icon>
                                                 Simpan Perubahan
                                             </button>
-                                            <a href="../../layouts/bahan-baku.jsp" class="btn btn-secondary">
+                                            <a href="../../BahanBakuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

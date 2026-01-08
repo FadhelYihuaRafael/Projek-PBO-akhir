@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="dao.SupplierDAO"%>
 <%@page import="model.Supplier"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -19,140 +18,21 @@
     // ambil data session
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
-    Integer userId = (Integer) session.getAttribute("userId");
     
-    // variabel untuk pesan
-    String successMessage = null;
-    String errorMessage = null;
+    // Ambil data dari request attribute yang dikirim oleh controller
+    // Jika tidak ada, berarti akses langsung ke JSP, redirect ke controller
+    List<Supplier> listSupplier = (List<Supplier>) request.getAttribute("daftarSupplier");
+    String successMessage = (String) request.getAttribute("pesanSukses");
+    String errorMessage = (String) request.getAttribute("pesanError");
     
-    // buat object DAO
-    SupplierDAO supplierDAO = new SupplierDAO();
-    
-    // handle POST request untuk tambah dan update
-    if ("POST".equals(request.getMethod())) {
-        String action = request.getParameter("action");
-        String nama = request.getParameter("nama");
-        String telepon = request.getParameter("telepon");
-        String alamat = request.getParameter("alamat");
-        
-        if ("update".equals(action)) {
-            // update supplier
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                
-                Supplier supplierUpdate = new Supplier();
-                supplierUpdate.setId(id);
-                supplierUpdate.setNama(nama);
-                supplierUpdate.setTelepon(telepon);
-                supplierUpdate.setAlamat(alamat);
-                
-                boolean updateSuccess = supplierDAO.update(supplierUpdate);
-                
-                if (updateSuccess) {
-                    successMessage = "Supplier berhasil diupdate!";
-                } else {
-                    errorMessage = "Gagal mengupdate supplier!";
-                }
-            } catch (NumberFormatException e) {
-                errorMessage = "Error: ID supplier tidak valid!";
-                e.printStackTrace();
-            } catch (Exception e) {
-                errorMessage = "Error: " + e.getMessage();
-                e.printStackTrace();
-            }
-        } else {
-            // tambah supplier baru
-            if (nama == null || nama.trim().isEmpty()) {
-                errorMessage = "Nama supplier tidak boleh kosong!";
-            } else if (telepon == null || telepon.trim().isEmpty()) {
-                errorMessage = "Nomor telepon tidak boleh kosong!";
-            } else if (alamat == null || alamat.trim().isEmpty()) {
-                errorMessage = "Alamat tidak boleh kosong!";
-            } else if (userId == null) {
-                errorMessage = "Session expired! Silakan login kembali.";
-            } else {
-                try {
-                    Supplier supplierBaru = new Supplier(
-                        nama.trim(), 
-                        telepon.trim(), 
-                        alamat.trim(), 
-                        userId
-                    );
-                    
-                    boolean tambahSuccess = supplierDAO.insert(supplierBaru);
-                    
-                    if (tambahSuccess) {
-                        successMessage = "Supplier berhasil ditambahkan!";
-                    } else {
-                        errorMessage = "Gagal menambahkan supplier!";
-                    }
-                } catch (Exception e) {
-                    errorMessage = "Error: " + e.getMessage();
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    
-    // handle GET request untuk delete
-    String action = request.getParameter("action");
-    if ("delete".equals(action)) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            boolean deleteSuccess = supplierDAO.delete(id);
-            
-            if (deleteSuccess) {
-                successMessage = "Supplier berhasil dihapus!";
-            } else {
-                errorMessage = "Gagal menghapus supplier!";
-            }
-        } catch (NumberFormatException e) {
-            errorMessage = "Error: ID supplier tidak valid!";
-            e.printStackTrace();
-        } catch (Exception e) {
-            errorMessage = "Error: " + e.getMessage();
-            e.printStackTrace();
-        }
-    }
-    
-    // ambil semua data supplier
-    List<Supplier> listSupplier = new ArrayList<>();
-    try {
-        listSupplier = supplierDAO.getAll();
-        
-        if (listSupplier == null) {
-            listSupplier = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        errorMessage = "Error mengambil data: " + e.getMessage();
-        e.printStackTrace();
-        listSupplier = new ArrayList<>();
-    }
-    
-    // ambil data supplier untuk edit
-    Supplier supplierEdit = null;
-    if ("edit".equals(action)) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            supplierEdit = supplierDAO.ambilSupplierById(id);
-            
-            if (supplierEdit == null) {
-                errorMessage = "Supplier dengan ID " + id + " tidak ditemukan!";
-            }
-        } catch (NumberFormatException e) {
-            errorMessage = "Error: ID supplier tidak valid!";
-            e.printStackTrace();
-        } catch (Exception e) {
-            errorMessage = "Error mengambil data edit: " + e.getMessage();
-            e.printStackTrace();
-        }
+    // Jika data tidak ada dari controller, redirect ke controller
+    if (listSupplier == null) {
+        response.sendRedirect("SupplierController");
+        return;
     }
     
     // set attribute untuk diakses di halaman lain
     request.setAttribute("daftarSupplier", listSupplier);
-    request.setAttribute("supplierEdit", supplierEdit);
     request.setAttribute("pesanSukses", successMessage);
     request.setAttribute("pesanError", errorMessage);
     request.setAttribute("username", username);

@@ -36,7 +36,7 @@
           <span class="hide-menu">Master Data</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="supplier.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="SupplierController" aria-expanded="false">
             <span>
               <iconify-icon icon="mdi:truck-delivery" class="fs-6"></iconify-icon>
             </span>
@@ -44,7 +44,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="bahan-baku.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="BahanBakuController" aria-expanded="false">
             <span>
               <iconify-icon icon="mdi:package-variant" class="fs-6"></iconify-icon>
             </span>
@@ -52,7 +52,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="kategori-menu.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="KategoriMenuController" aria-expanded="false">
             <span>
               <iconify-icon icon="mdi:folder-multiple" class="fs-6"></iconify-icon>
             </span>
@@ -60,7 +60,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="menu.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="MenuController" aria-expanded="false">
             <span>
               <iconify-icon icon="mdi:food" class="fs-6"></iconify-icon>
             </span>
@@ -68,7 +68,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="resep.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="ResepController" aria-expanded="false">
             <span>
               <iconify-icon icon="mdi:book-open-variant" class="fs-6"></iconify-icon>
             </span>

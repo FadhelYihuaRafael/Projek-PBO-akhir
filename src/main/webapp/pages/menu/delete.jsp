@@ -78,7 +78,7 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Menu tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/menu.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../MenuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Hapus Menu</h5>
                                     
@@ -95,7 +95,7 @@
                                         <p><strong>Deskripsi:</strong> <%= menu.getDeskripsi() != null ? menu.getDeskripsi() : "-" %></p>
                                     </div>
                                     
-                                    <form method="get" action="../../layouts/menu.jsp">
+                                    <form method="get" action="../../MenuController">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<%= menu.getId() %>">
                                         <div class="d-flex gap-2">
@@ -103,7 +103,7 @@
                                                 <iconify-icon icon="mdi:delete"></iconify-icon>
                                                 Ya, Hapus
                                             </button>
-                                            <a href="../../layouts/menu.jsp" class="btn btn-secondary">
+                                            <a href="../../MenuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

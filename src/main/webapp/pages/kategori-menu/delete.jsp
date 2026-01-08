@@ -69,7 +69,7 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Kategori menu tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/kategori-menu.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../KategoriMenuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Hapus Kategori Menu</h5>
                                     
@@ -84,7 +84,7 @@
                                         <p><strong>Deskripsi:</strong> <%= kategori.getDeskripsi() != null ? kategori.getDeskripsi() : "-" %></p>
                                     </div>
                                     
-                                    <form method="get" action="../../layouts/kategori-menu.jsp">
+                                    <form method="get" action="../../KategoriMenuController">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<%= kategori.getId() %>">
                                         <div class="d-flex gap-2">
@@ -92,7 +92,7 @@
                                                 <iconify-icon icon="mdi:delete"></iconify-icon>
                                                 Ya, Hapus
                                             </button>
-                                            <a href="../../layouts/kategori-menu.jsp" class="btn btn-secondary">
+                                            <a href="../../KategoriMenuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

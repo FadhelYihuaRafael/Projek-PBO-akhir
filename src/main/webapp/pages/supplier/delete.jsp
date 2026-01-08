@@ -66,7 +66,7 @@
                                             <iconify-icon icon="mdi:delete"></iconify-icon>
                                             Ya, Hapus
                                         </button>
-                                        <a href="../../layouts/supplier.jsp" class="btn btn-secondary">
+                                        <a href="../../SupplierController" class="btn btn-secondary">
                                             <iconify-icon icon="mdi:cancel"></iconify-icon>
                                             Batal
                                         </a>

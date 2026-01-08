@@ -86,7 +86,7 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Resep tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/resep.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../ResepController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Hapus Resep</h5>
                                     
@@ -102,7 +102,7 @@
                                         <p><strong>Jumlah Dibutuhkan:</strong> <%= resep.getJumlahDibutuhkan() != null ? String.format("%.2f", resep.getJumlahDibutuhkan()) + " " + (bahan != null && bahan.getSatuan() != null ? bahan.getSatuan() : "") : "-" %></p>
                                     </div>
                                     
-                                    <form method="get" action="../../layouts/resep.jsp">
+                                    <form method="get" action="../../ResepController">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<%= resep.getId() %>">
                                         <div class="d-flex gap-2">
@@ -110,7 +110,7 @@
                                                 <iconify-icon icon="mdi:delete"></iconify-icon>
                                                 Ya, Hapus
                                             </button>
-                                            <a href="../../layouts/resep.jsp" class="btn btn-secondary">
+                                            <a href="../../ResepController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

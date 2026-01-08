@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-   version="6.0">
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet-mapping>
+        <servlet-name>tsting</servlet-name>
+        <url-pattern>/tsting</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <!-- Resep Controller Servlet -->
+    <servlet>
+        <servlet-name>ResepController</servlet-name>
+        <servlet-class>controller.ResepController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>tsting</servlet-name>
+        <servlet-class>controller.tsting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResepController</servlet-name>
+        <url-pattern>/ResepController</url-pattern>
+    </servlet-mapping>
+    <!-- BahanBaku Controller Servlet -->
+    <servlet>
+        <servlet-name>BahanBakuController</servlet-name>
+        <servlet-class>controller.BahanBakuController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BahanBakuController</servlet-name>
+        <url-pattern>/BahanBakuController</url-pattern>
+    </servlet-mapping>
+    <!-- KategoriMenu Controller Servlet -->
+    <servlet>
+        <servlet-name>KategoriMenuController</servlet-name>
+        <servlet-class>controller.KategoriMenuController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>KategoriMenuController</servlet-name>
+        <url-pattern>/KategoriMenuController</url-pattern>
+    </servlet-mapping>
+    <!-- Menu Controller Servlet -->
+    <servlet>
+        <servlet-name>MenuController</servlet-name>
+        <servlet-class>controller.MenuController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MenuController</servlet-name>
+        <url-pattern>/MenuController</url-pattern>
+    </servlet-mapping>
+    <!-- Supplier Controller Servlet -->
+    <servlet>
+        <servlet-name>SupplierController</servlet-name>
+        <servlet-class>controller.SupplierController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SupplierController</servlet-name>
+        <url-pattern>/SupplierController</url-pattern>
+    </servlet-mapping>
 </web-app>

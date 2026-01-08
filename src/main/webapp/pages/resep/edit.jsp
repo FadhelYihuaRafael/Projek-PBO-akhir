@@ -93,11 +93,11 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Resep tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../layouts/resep.jsp" class="btn btn-secondary">Kembali</a>
+                                    <a href="../../ResepController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Edit Resep</h5>
                                     
-                                    <form method="post" action="../../layouts/resep.jsp">
+                                    <form method="post" action="../../ResepController">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="id" value="<%= resep.getId() %>">
                                         
@@ -137,7 +137,7 @@
                                                 <iconify-icon icon="mdi:content-save"></iconify-icon>
                                                 Simpan Perubahan
                                             </button>
-                                            <a href="../../layouts/resep.jsp" class="btn btn-secondary">
+                                            <a href="../../ResepController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>

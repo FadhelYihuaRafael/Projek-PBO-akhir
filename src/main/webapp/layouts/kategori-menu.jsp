@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="dao.KategoriMenuDAO"%>
 <%@page import="model.KategoriMenu"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -19,108 +18,17 @@
     // ambil data session
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
-    Integer userId = (Integer) session.getAttribute("userId");
     
-    // variabel untuk pesan
-    String successMsg = null;
-    String errorMsg = null;
+    // Ambil data dari request attribute yang dikirim oleh controller
+    // Jika tidak ada, berarti akses langsung ke JSP, redirect ke controller
+    List<KategoriMenu> listKategori = (List<KategoriMenu>) request.getAttribute("daftarKategori");
+    String successMsg = (String) request.getAttribute("pesanSukses");
+    String errorMsg = (String) request.getAttribute("pesanError");
     
-    // buat object DAO
-    KategoriMenuDAO kategoriDAO = new KategoriMenuDAO();
-    
-    // handle POST request untuk tambah dan update
-    if ("POST".equals(request.getMethod())) {
-        String action = request.getParameter("action");
-        String nama = request.getParameter("nama");
-        String deskripsi = request.getParameter("deskripsi");
-        
-        if ("update".equals(action)) {
-            // update kategori
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                
-                KategoriMenu kategoriUpdate = new KategoriMenu();
-                kategoriUpdate.setId(id);
-                kategoriUpdate.setNama(nama);
-                kategoriUpdate.setDeskripsi(deskripsi);
-                
-                boolean updateOk = kategoriDAO.update(kategoriUpdate);
-                
-                if (updateOk) {
-                    successMsg = "Kategori menu berhasil diupdate!";
-                } else {
-                    errorMsg = "Gagal mengupdate kategori menu!";
-                }
-            } catch (NumberFormatException e) {
-                errorMsg = "Error: ID kategori tidak valid!";
-                e.printStackTrace();
-            } catch (Exception e) {
-                errorMsg = "Error: " + e.getMessage();
-                e.printStackTrace();
-            }
-        } else {
-            // tambah kategori baru
-            if (nama == null || nama.trim().isEmpty()) {
-                errorMsg = "Nama kategori tidak boleh kosong!";
-            } else if (userId == null) {
-                errorMsg = "Session expired! Silakan login kembali.";
-            } else {
-                try {
-                    KategoriMenu kategoriBaru = new KategoriMenu(
-                        nama.trim(), 
-                        deskripsi != null ? deskripsi.trim() : "", 
-                        userId
-                    );
-                    
-                    boolean tambahOk = kategoriDAO.insert(kategoriBaru);
-                    
-                    if (tambahOk) {
-                        successMsg = "Kategori menu berhasil ditambahkan!";
-                    } else {
-                        errorMsg = "Gagal menambahkan kategori menu!";
-                    }
-                } catch (Exception e) {
-                    errorMsg = "Error: " + e.getMessage();
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    
-    // handle GET request untuk delete
-    String action = request.getParameter("action");
-    if ("delete".equals(action)) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            boolean deleteOk = kategoriDAO.delete(id);
-            
-            if (deleteOk) {
-                successMsg = "Kategori menu berhasil dihapus!";
-            } else {
-                errorMsg = "Gagal menghapus kategori menu!";
-            }
-        } catch (NumberFormatException e) {
-            errorMsg = "Error: ID kategori tidak valid!";
-            e.printStackTrace();
-        } catch (Exception e) {
-            errorMsg = "Error: " + e.getMessage();
-            e.printStackTrace();
-        }
-    }
-    
-    // ambil semua data kategori
-    List<KategoriMenu> listKategori = new ArrayList<>();
-    try {
-        listKategori = kategoriDAO.getAll();
-        
-        if (listKategori == null) {
-            listKategori = new ArrayList<>();
-        }
-    } catch (Exception e) {
-        errorMsg = "Error mengambil data: " + e.getMessage();
-        e.printStackTrace();
-        listKategori = new ArrayList<>();
+    // Jika data tidak ada dari controller, redirect ke controller
+    if (listKategori == null) {
+        response.sendRedirect("KategoriMenuController");
+        return;
     }
     
     // set attribute untuk diakses di halaman lain
