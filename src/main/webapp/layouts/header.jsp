@@ -9,6 +9,7 @@
     // Ambil data dari session untuk ditampilkan di header
     String username = (String) session.getAttribute("username");
     String role = (String) session.getAttribute("role");
+    String contextPath = request.getContextPath();
 %>
 
 <header class="app-header">
@@ -31,7 +32,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+            <img src="<%= contextPath %>/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
             <span class="ms-2 fs-3 fw-bold text-dark"><%= username %></span>
           </a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">

@@ -31,7 +31,8 @@
     
     // Jika data tidak ada dari controller, redirect ke controller
     if (listResep == null) {
-        response.sendRedirect("ResepController");
+        String contextPath = request.getContextPath();
+        response.sendRedirect(contextPath + "/ResepController");
         return;
     }
     
@@ -43,6 +44,9 @@
     request.setAttribute("pesanError", errorMsg);
     request.setAttribute("username", username);
     request.setAttribute("role", role);
+    
+    // Ambil contextPath untuk path absolut
+    String contextPath = request.getContextPath();
 %>
 
 <!doctype html>
@@ -52,8 +56,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resep | SeoDash Dashboard | <%= role.toUpperCase() %></title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/seodashlogo.png" />
-    <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <link rel="shortcut icon" type="image/png" href="<%= contextPath %>/assets/images/logos/seodashlogo.png" />
+    <link rel="stylesheet" href="<%= contextPath %>/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -71,15 +75,17 @@
             
             <%-- Include Footer --%>
             <jsp:include page="footer.jsp" />
+        </div>
+    </div>
 
-            <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-            <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-            <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-            <script src="../assets/js/sidebarmenu.js"></script>
-            <script src="../assets/js/app.min.js"></script>
-            <script src="../assets/js/dashboard.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="<%= contextPath %>/assets/js/sidebarmenu.js"></script>
+    <script src="<%= contextPath %>/assets/js/app.min.js"></script>
+    <script src="<%= contextPath %>/assets/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
 
 </html>

@@ -27,6 +27,9 @@
     // Set attribute untuk bisa diakses di included pages
     request.setAttribute("username", username);
     request.setAttribute("role", role);
+    
+    // Ambil contextPath untuk path absolut
+    String contextPath = request.getContextPath();
 %>
 <!doctype html>
 <html lang="en">
@@ -35,8 +38,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit Supplier | SeoDash</title>
-    <link rel="shortcut icon" type="image/png" href="../../assets/images/logos/seodashlogo.png" />
-    <link rel="stylesheet" href="../../assets/css/styles.min.css" />
+    <link rel="shortcut icon" type="image/png" href="<%= contextPath %>/assets/images/logos/seodashlogo.png" />
+    <link rel="stylesheet" href="<%= contextPath %>/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -56,10 +59,10 @@
                             <div class="card-body">
                                 <h5 class="card-title fw-semibold mb-4">Edit Supplier</h5>
                                 
-                                <form method="post" action="../../SupplierController">
+                                <form method="post" action="<%= contextPath %>/SupplierController">
                                     <input type="hidden" name="action" value="update">
                                     <input type="hidden" name="id" value="<%= supplier.getId() %>">
-                                    <input type="hidden" name="returnUrl" value="../../SupplierController">
+                                    <input type="hidden" name="returnUrl" value="<%= contextPath %>/SupplierController">
                                     
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama Supplier</label>
@@ -83,7 +86,7 @@
                                             <iconify-icon icon="mdi:content-save"></iconify-icon>
                                             Simpan Perubahan
                                         </button>
-                                        <a href="../../SupplierController" class="btn btn-secondary">
+                                        <a href="<%= contextPath %>/SupplierController" class="btn btn-secondary">
                                             <iconify-icon icon="mdi:cancel"></iconify-icon>
                                             Batal
                                         </a>
@@ -100,11 +103,11 @@
         </div>
     </div>
 
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../assets/js/sidebarmenu.js"></script>
-    <script src="../../assets/js/app.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="<%= contextPath %>/assets/js/sidebarmenu.js"></script>
+    <script src="<%= contextPath %>/assets/js/app.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
 

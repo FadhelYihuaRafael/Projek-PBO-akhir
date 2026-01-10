@@ -135,11 +135,11 @@
                                             </td>
                                             <td><%= menu.getDeskripsi() != null ? (menu.getDeskripsi().length() > 50 ? menu.getDeskripsi().substring(0, 50) + "..." : menu.getDeskripsi()) : "-" %></td>
                                             <td class="text-center">
-                                                <a href="../pages/menu/edit.jsp?id=<%= menu.getId() %>" class="btn btn-warning btn-sm">
+                                                <a href="<%= contextPath %>/pages/menu/edit.jsp?id=<%= menu.getId() %>" class="btn btn-warning btn-sm">
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
-                                                <a href="../pages/menu/delete.jsp?id=<%= menu.getId() %>" class="btn btn-danger btn-sm">
+                                                <a href="<%= contextPath %>/pages/menu/delete.jsp?id=<%= menu.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>

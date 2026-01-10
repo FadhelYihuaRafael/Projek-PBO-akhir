@@ -36,7 +36,26 @@ public class MenuController extends HttpServlet {
         
         String action = request.getParameter("action");
         
-        if ("delete".equals(action)) {
+        if ("edit".equals(action)) {
+            // Handle edit - ambil data menu untuk ditampilkan di form
+            String idStr = request.getParameter("id");
+            if (idStr != null && !idStr.trim().isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    model.Menu menuEdit = menuDAO.ambilMenuById(id);
+                    if (menuEdit != null) {
+                        request.setAttribute("menuEdit", menuEdit);
+                    } else {
+                        session.setAttribute("errorMsg", "Menu tidak ditemukan!");
+                    }
+                } catch (NumberFormatException e) {
+                    session.setAttribute("errorMsg", "ID tidak valid!");
+                } catch (Exception e) {
+                    session.setAttribute("errorMsg", "Error: " + e.getMessage());
+                }
+            }
+            // Lanjutkan ke tampilan list dengan form edit
+        } else if ("delete".equals(action)) {
             // Handle delete
             String idStr = request.getParameter("id");
             if (idStr != null && !idStr.trim().isEmpty()) {

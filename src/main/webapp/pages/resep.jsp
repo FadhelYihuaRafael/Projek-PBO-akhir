@@ -126,14 +126,16 @@
                                                 <%= resep.getJumlahDibutuhkan() != null ? String.format("%.2f", resep.getJumlahDibutuhkan()) + " " + satuan : "-" %>
                                             </td>
                                             <td class="text-center">
-                                                <a href="../pages/resep/edit.jsp?id=<%= resep.getId() %>" class="btn btn-warning btn-sm">
+                                                <a href="<%= contextPath %>/pages/resep/edit.jsp?id=<%= resep.getId() %>" class="btn btn-warning btn-sm">
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
-                                                <a href="../pages/resep/delete.jsp?id=<%= resep.getId() %>" class="btn btn-danger btn-sm">
+                                                <%= if (role.equals("admin")) { %>
+                                                <a href="<%= contextPath %>/pages/resep/delete.jsp?id=<%= resep.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>
+                                                <% } %>
                                             </td>
                                         </tr>
                                         <% no++; %>

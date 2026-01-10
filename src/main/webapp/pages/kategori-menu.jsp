@@ -84,11 +84,11 @@
                                             <td><%= kategori.getNama() != null ? kategori.getNama() : "-" %></td>
                                             <td><%= kategori.getDeskripsi() != null ? (kategori.getDeskripsi().length() > 50 ? kategori.getDeskripsi().substring(0, 50) + "..." : kategori.getDeskripsi()) : "-" %></td>
                                             <td class="text-center">
-                                                <a href="../pages/kategori-menu/edit.jsp?id=<%= kategori.getId() %>" class="btn btn-warning btn-sm">
+                                                <a href="<%= contextPath %>/pages/kategori-menu/edit.jsp?id=<%= kategori.getId() %>" class="btn btn-warning btn-sm">
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
-                                                <a href="../pages/kategori-menu/delete.jsp?id=<%= kategori.getId() %>" class="btn btn-danger btn-sm">
+                                                <a href="<%= contextPath %>/pages/kategori-menu/delete.jsp?id=<%= kategori.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>

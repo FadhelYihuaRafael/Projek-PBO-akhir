@@ -110,11 +110,11 @@
                                             </td>
                                             <td class="text-center"><%= bahan.getStok() != null ? bahan.getStok() : "-" %></td>
                                             <td class="text-center">
-                                                <a href="../pages/bahan-baku/edit.jsp?id=<%= bahan.getId() %>" class="btn btn-warning btn-sm">
+                                                <a href="<%= contextPath %>/pages/bahan-baku/edit.jsp?id=<%= bahan.getId() %>" class="btn btn-warning btn-sm">
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
-                                                <a href="../pages/bahan-baku/delete.jsp?id=<%= bahan.getId() %>" class="btn btn-danger btn-sm">
+                                                <a href="<%= contextPath %>/pages/bahan-baku/delete.jsp?id=<%= bahan.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>

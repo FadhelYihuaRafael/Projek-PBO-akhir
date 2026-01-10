@@ -30,7 +30,8 @@ public class ResepController extends HttpServlet {
         // Cek session
         HttpSession session = request.getSession();
         if (session.getAttribute("username") == null) {
-            response.sendRedirect("../login.jsp");
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/login.jsp");
             return;
         }
         
@@ -55,7 +56,8 @@ public class ResepController extends HttpServlet {
                     session.setAttribute("errorMsg", "Error: " + e.getMessage());
                 }
             }
-            response.sendRedirect("ResepController");
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/ResepController");
             return;
         }
         
@@ -92,7 +94,8 @@ public class ResepController extends HttpServlet {
         // Cek session
         HttpSession session = request.getSession();
         if (session.getAttribute("username") == null) {
-            response.sendRedirect("../login.jsp");
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/login.jsp");
             return;
         }
         
@@ -107,7 +110,8 @@ public class ResepController extends HttpServlet {
             String idStr = request.getParameter("id");
             if (idStr == null || idStr.trim().isEmpty()) {
                 session.setAttribute("errorMsg", "ID resep tidak ditemukan!");
-                response.sendRedirect("ResepController");
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/ResepController");
                 return;
             }
             
@@ -119,7 +123,8 @@ public class ResepController extends HttpServlet {
                 
                 if (jumlah <= 0) {
                     session.setAttribute("errorMsg", "Jumlah harus lebih dari 0!");
-                    response.sendRedirect("ResepController");
+                    String contextPath = request.getContextPath();
+                    response.sendRedirect(contextPath + "/ResepController");
                     return;
                 }
                 
@@ -178,7 +183,8 @@ public class ResepController extends HttpServlet {
             }
         }
         
-        response.sendRedirect("ResepController");
+        String contextPath = request.getContextPath();
+        response.sendRedirect(contextPath + "/ResepController");
     }
 }
 

@@ -33,7 +33,26 @@ public class BahanBakuController extends HttpServlet {
         
         String action = request.getParameter("action");
         
-        if ("delete".equals(action)) {
+        if ("edit".equals(action)) {
+            // Handle edit - ambil data bahan baku untuk ditampilkan di form
+            String idStr = request.getParameter("id");
+            if (idStr != null && !idStr.trim().isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    model.BahanBaku bahanEdit = bahanDAO.ambilBahanBakuById(id);
+                    if (bahanEdit != null) {
+                        request.setAttribute("bahanEdit", bahanEdit);
+                    } else {
+                        session.setAttribute("errorMsg", "Bahan baku tidak ditemukan!");
+                    }
+                } catch (NumberFormatException e) {
+                    session.setAttribute("errorMsg", "ID tidak valid!");
+                } catch (Exception e) {
+                    session.setAttribute("errorMsg", "Error: " + e.getMessage());
+                }
+            }
+            // Lanjutkan ke tampilan list dengan form edit
+        } else if ("delete".equals(action)) {
             // Handle delete
             String idStr = request.getParameter("id");
             if (idStr != null && !idStr.trim().isEmpty()) {

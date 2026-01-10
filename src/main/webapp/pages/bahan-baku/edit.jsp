@@ -51,6 +51,9 @@
     // set attribute
     request.setAttribute("username", username);
     request.setAttribute("role", role);
+    
+    // Ambil contextPath untuk path absolut
+    String contextPath = request.getContextPath();
 %>
 <!doctype html>
 <html lang="en">
@@ -59,8 +62,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit Bahan Baku | SeoDash</title>
-    <link rel="shortcut icon" type="image/png" href="../../assets/images/logos/seodashlogo.png" />
-    <link rel="stylesheet" href="../../assets/css/styles.min.css" />
+    <link rel="shortcut icon" type="image/png" href="<%= contextPath %>/assets/images/logos/seodashlogo.png" />
+    <link rel="stylesheet" href="<%= contextPath %>/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -82,11 +85,11 @@
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> <%= errorMsg != null ? errorMsg : "Bahan baku tidak ditemukan!" %>
                                     </div>
-                                    <a href="../../BahanBakuController" class="btn btn-secondary">Kembali</a>
+                                    <a href="<%= contextPath %>/BahanBakuController" class="btn btn-secondary">Kembali</a>
                                 <% } else { %>
                                     <h5 class="card-title fw-semibold mb-4">Edit Bahan Baku</h5>
                                     
-                                    <form method="post" action="../../BahanBakuController">
+                                    <form method="post" action="<%= contextPath %>/BahanBakuController">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="id" value="<%= bahan.getId() %>">
                                         
@@ -128,7 +131,7 @@
                                                 <iconify-icon icon="mdi:content-save"></iconify-icon>
                                                 Simpan Perubahan
                                             </button>
-                                            <a href="../../BahanBakuController" class="btn btn-secondary">
+                                            <a href="<%= contextPath %>/BahanBakuController" class="btn btn-secondary">
                                                 <iconify-icon icon="mdi:cancel"></iconify-icon>
                                                 Batal
                                             </a>
@@ -146,11 +149,11 @@
         </div>
     </div>
 
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../assets/js/sidebarmenu.js"></script>
-    <script src="../../assets/js/app.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= contextPath %>/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="<%= contextPath %>/assets/js/sidebarmenu.js"></script>
+    <script src="<%= contextPath %>/assets/js/app.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
 
