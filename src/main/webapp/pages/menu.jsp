@@ -15,6 +15,7 @@
     List<KategoriMenu> listKategori = (List<KategoriMenu>) request.getAttribute("daftarKategori");
     String successMessage = (String) request.getAttribute("pesanSukses");
     String errorMessage = (String) request.getAttribute("pesanError");
+    String role = (String) request.getAttribute("role");
     
     if (listMenu == null) listMenu = new ArrayList<>();
     if (listKategori == null) listKategori = new ArrayList<>();
@@ -139,10 +140,12 @@
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
+                                                <% if (role != null && role.equals("admin")) { %>
                                                 <a href="<%= contextPath %>/pages/menu/delete.jsp?id=<%= menu.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>
+                                                <% } %>
                                             </td>
                                         </tr>
                                         <% no++; %>

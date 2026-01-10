@@ -18,6 +18,7 @@
     String successMsg = (String) request.getAttribute("pesanSukses");
     String errorMsg = (String) request.getAttribute("pesanError");
     String username = (String) request.getAttribute("username");
+    String role = (String) request.getAttribute("role");
     
     // kalau null, buat list kosong
     if (listResep == null) {
@@ -130,7 +131,7 @@
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
-                                                <%= if (role.equals("admin")) { %>
+                                                <% if (role != null && role.equals("admin")) { %>
                                                 <a href="<%= contextPath %>/pages/resep/delete.jsp?id=<%= resep.getId() %>" class="btn btn-danger btn-sm">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete

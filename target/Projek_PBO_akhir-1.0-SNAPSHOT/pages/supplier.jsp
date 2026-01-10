@@ -15,6 +15,7 @@
     String successMessage = (String) request.getAttribute("pesanSukses");
     String errorMessage = (String) request.getAttribute("pesanError");
     String username = (String) request.getAttribute("username");
+    String role = (String) request.getAttribute("role");
     
     // kalau null, buat list kosong
     if (listSupplier == null) {
@@ -129,10 +130,12 @@
                                                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                                                     Edit
                                                 </a>
+                                                <% if (role != null && role.equals("admin")) { %>
                                                 <a href="<%= supplierUrl %>?action=delete&id=<%= supplier.getId() %>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus supplier ini?');">
                                                     <iconify-icon icon="mdi:delete"></iconify-icon>
                                                     Delete
                                                 </a>
+                                                <% } %>
                                             </td>
                                         </tr>
                                         <% no++; %>
