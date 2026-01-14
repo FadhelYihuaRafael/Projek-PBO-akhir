@@ -2,6 +2,9 @@ package model;
 
 /**
  * Model class untuk tabel kategori_menu
+ * Menyimpan data kategori seperti id, nama kategori,
+ * deskripsi, dan siapa yang membuat.
+ * Digunakan dalam proses CRUD pada kategori menu.
  * @author Admin
  */
 public class KategoriMenu {
