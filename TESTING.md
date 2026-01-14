@@ -1,0 +1,6 @@
+- Status: BUILD SUCCESS 
+- Command: mvn clean compile 
+- Maven: 3.9.12 
+- Java: JDK 21 
+- OS: Windows 11 
+- Total source files: 25 
