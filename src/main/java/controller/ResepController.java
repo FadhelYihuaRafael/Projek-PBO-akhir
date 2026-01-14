@@ -4,12 +4,14 @@ import dao.ResepDAO;
 import dao.MenuDAO;
 import dao.BahanBakuDAO;
 import model.Resep;
+import model.Menu;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class ResepController extends HttpServlet {
     
@@ -104,6 +106,7 @@ public class ResepController extends HttpServlet {
         String menuIdStr = request.getParameter("menuId");
         String bahanBakuIdStr = request.getParameter("bahanBakuId");
         String jumlahStr = request.getParameter("jumlah");
+        String produkYangDihasilkanStr = request.getParameter("produkYangDihasilkan");
         
         if ("update".equals(action)) {
             // Update resep
@@ -120,9 +123,18 @@ public class ResepController extends HttpServlet {
                 int menuId = Integer.parseInt(menuIdStr);
                 int bahanBakuId = Integer.parseInt(bahanBakuIdStr);
                 float jumlah = Float.parseFloat(jumlahStr);
+                float produkYangDihasilkan = produkYangDihasilkanStr != null && !produkYangDihasilkanStr.trim().isEmpty() 
+                    ? Float.parseFloat(produkYangDihasilkanStr) : 0.0f;
                 
                 if (jumlah <= 0) {
                     session.setAttribute("errorMsg", "Jumlah harus lebih dari 0!");
+                    String contextPath = request.getContextPath();
+                    response.sendRedirect(contextPath + "/ResepController");
+                    return;
+                }
+                
+                if (produkYangDihasilkan <= 0) {
+                    session.setAttribute("errorMsg", "Produk yang dihasilkan harus lebih dari 0!");
                     String contextPath = request.getContextPath();
                     response.sendRedirect(contextPath + "/ResepController");
                     return;
@@ -133,10 +145,21 @@ public class ResepController extends HttpServlet {
                 resepUpdate.setMenuId(menuId);
                 resepUpdate.setBahanBakuId(bahanBakuId);
                 resepUpdate.setJumlahDibutuhkan(jumlah);
+                resepUpdate.setProdukYangDihasilkan(produkYangDihasilkan);
                 
                 boolean updateOk = resepDAO.update(resepUpdate);
                 
                 if (updateOk) {
+                    // Update harga jual menu otomatis berdasarkan HPP + margin
+                    Menu menuUpdate = menuDAO.ambilMenuById(menuId);
+                    if (menuUpdate != null && menuUpdate.getMarginPersen() != null) {
+                        Float hpp = resepDAO.hitungHPPByMenuId(menuId);
+                        if (hpp != null && hpp > 0) {
+                            int hargaJual = Math.round(hpp + (hpp * menuUpdate.getMarginPersen() / 100));
+                            menuUpdate.setHargaJual(hargaJual);
+                            menuDAO.update(menuUpdate);
+                        }
+                    }
                     session.setAttribute("successMsg", "Resep berhasil diupdate!");
                 } else {
                     session.setAttribute("errorMsg", "Gagal mengupdate resep!");
@@ -155,6 +178,8 @@ public class ResepController extends HttpServlet {
                 session.setAttribute("errorMsg", "Bahan baku harus dipilih!");
             } else if (jumlahStr == null || jumlahStr.trim().isEmpty()) {
                 session.setAttribute("errorMsg", "Jumlah tidak boleh kosong!");
+            } else if (produkYangDihasilkanStr == null || produkYangDihasilkanStr.trim().isEmpty()) {
+                session.setAttribute("errorMsg", "Produk yang dihasilkan tidak boleh kosong!");
             } else if (userId == null) {
                 session.setAttribute("errorMsg", "Session expired! Silakan login kembali.");
             } else {
@@ -162,14 +187,27 @@ public class ResepController extends HttpServlet {
                     int menuId = Integer.parseInt(menuIdStr);
                     int bahanBakuId = Integer.parseInt(bahanBakuIdStr);
                     float jumlah = Float.parseFloat(jumlahStr);
+                    float produkYangDihasilkan = Float.parseFloat(produkYangDihasilkanStr);
                     
                     if (jumlah <= 0) {
                         session.setAttribute("errorMsg", "Jumlah harus lebih dari 0!");
+                    } else if (produkYangDihasilkan <= 0) {
+                        session.setAttribute("errorMsg", "Produk yang dihasilkan harus lebih dari 0!");
                     } else {
-                        Resep resepBaru = new Resep(menuId, bahanBakuId, jumlah, userId);
+                        Resep resepBaru = new Resep(menuId, bahanBakuId, jumlah, produkYangDihasilkan, userId);
                         boolean tambahOk = resepDAO.insert(resepBaru);
                         
                         if (tambahOk) {
+                            // Update harga jual menu otomatis berdasarkan HPP + margin
+                            Menu menuUpdate = menuDAO.ambilMenuById(menuId);
+                            if (menuUpdate != null && menuUpdate.getMarginPersen() != null) {
+                                Float hpp = resepDAO.hitungHPPByMenuId(menuId);
+                                if (hpp != null && hpp > 0) {
+                                    int hargaJual = Math.round(hpp + (hpp * menuUpdate.getMarginPersen() / 100));
+                                    menuUpdate.setHargaJual(hargaJual);
+                                    menuDAO.update(menuUpdate);
+                                }
+                            }
                             session.setAttribute("successMsg", "Resep berhasil ditambahkan!");
                         } else {
                             session.setAttribute("errorMsg", "Gagal menambahkan resep!");

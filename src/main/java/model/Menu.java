@@ -9,6 +9,7 @@ public class Menu {
     private Integer kategoriId;
     private String namaMenu;
     private Integer hargaJual;
+    private Float marginPersen;
     private String deskripsi;
     private Integer createdBy;
 
@@ -18,21 +19,23 @@ public class Menu {
 
     // Constructor dengan parameter
     public Menu(Integer id, Integer kategoriId, String namaMenu, Integer hargaJual, 
-                String deskripsi, Integer createdBy) {
+                Float marginPersen, String deskripsi, Integer createdBy) {
         this.id = id;
         this.kategoriId = kategoriId;
         this.namaMenu = namaMenu;
         this.hargaJual = hargaJual;
+        this.marginPersen = marginPersen;
         this.deskripsi = deskripsi;
         this.createdBy = createdBy;
     }
 
     // Constructor tanpa id (untuk insert)
     public Menu(Integer kategoriId, String namaMenu, Integer hargaJual, 
-                String deskripsi, Integer createdBy) {
+                Float marginPersen, String deskripsi, Integer createdBy) {
         this.kategoriId = kategoriId;
         this.namaMenu = namaMenu;
         this.hargaJual = hargaJual;
+        this.marginPersen = marginPersen;
         this.deskripsi = deskripsi;
         this.createdBy = createdBy;
     }
@@ -70,6 +73,14 @@ public class Menu {
         this.hargaJual = hargaJual;
     }
 
+    public Float getMarginPersen() {
+        return marginPersen;
+    }
+
+    public void setMarginPersen(Float marginPersen) {
+        this.marginPersen = marginPersen;
+    }
+
     public String getDeskripsi() {
         return deskripsi;
     }
@@ -88,7 +99,7 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "Menu{" + "id=" + id + ", kategoriId=" + kategoriId + ", namaMenu=" + namaMenu + ", hargaJual=" + hargaJual + ", deskripsi=" + deskripsi + ", createdBy=" + createdBy + '}';
+        return "Menu{" + "id=" + id + ", kategoriId=" + kategoriId + ", namaMenu=" + namaMenu + ", hargaJual=" + hargaJual + ", marginPersen=" + marginPersen + ", deskripsi=" + deskripsi + ", createdBy=" + createdBy + '}';
     }
 }
 

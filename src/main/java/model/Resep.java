@@ -9,6 +9,7 @@ public class Resep {
     private Integer menuId;
     private Integer bahanBakuId;
     private Float jumlahDibutuhkan;
+    private Float produkYangDihasilkan;
     private Integer createdBy;
 
     // Constructor default
@@ -16,19 +17,21 @@ public class Resep {
     }
 
     // Constructor dengan parameter
-    public Resep(Integer id, Integer menuId, Integer bahanBakuId, Float jumlahDibutuhkan, Integer createdBy) {
+    public Resep(Integer id, Integer menuId, Integer bahanBakuId, Float jumlahDibutuhkan, Float produkYangDihasilkan, Integer createdBy) {
         this.id = id;
         this.menuId = menuId;
         this.bahanBakuId = bahanBakuId;
         this.jumlahDibutuhkan = jumlahDibutuhkan;
+        this.produkYangDihasilkan = produkYangDihasilkan;
         this.createdBy = createdBy;
     }
 
     // Constructor tanpa id (untuk insert)
-    public Resep(Integer menuId, Integer bahanBakuId, Float jumlahDibutuhkan, Integer createdBy) {
+    public Resep(Integer menuId, Integer bahanBakuId, Float jumlahDibutuhkan, Float produkYangDihasilkan, Integer createdBy) {
         this.menuId = menuId;
         this.bahanBakuId = bahanBakuId;
         this.jumlahDibutuhkan = jumlahDibutuhkan;
+        this.produkYangDihasilkan = produkYangDihasilkan;
         this.createdBy = createdBy;
     }
 
@@ -65,6 +68,14 @@ public class Resep {
         this.jumlahDibutuhkan = jumlahDibutuhkan;
     }
 
+    public Float getProdukYangDihasilkan() {
+        return produkYangDihasilkan;
+    }
+
+    public void setProdukYangDihasilkan(Float produkYangDihasilkan) {
+        this.produkYangDihasilkan = produkYangDihasilkan;
+    }
+
     public Integer getCreatedBy() {
         return createdBy;
     }
@@ -75,7 +86,7 @@ public class Resep {
 
     @Override
     public String toString() {
-        return "Resep{" + "id=" + id + ", menuId=" + menuId + ", bahanBakuId=" + bahanBakuId + ", jumlahDibutuhkan=" + jumlahDibutuhkan + ", createdBy=" + createdBy + '}';
+        return "Resep{" + "id=" + id + ", menuId=" + menuId + ", bahanBakuId=" + bahanBakuId + ", jumlahDibutuhkan=" + jumlahDibutuhkan + ", produkYangDihasilkan=" + produkYangDihasilkan + ", createdBy=" + createdBy + '}';
     }
 }
 

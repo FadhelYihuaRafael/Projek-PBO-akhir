@@ -9,16 +9,25 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Menu"%>
 <%@page import="model.KategoriMenu"%>
+<%@page import="model.Resep"%>
+<%@page import="model.BahanBaku"%>
 <%@page import="dao.ResepDAO"%>
+<%@page import="dao.BahanBakuDAO"%>
 <%
     List<Menu> listMenu = (List<Menu>) request.getAttribute("daftarMenu");
     List<KategoriMenu> listKategori = (List<KategoriMenu>) request.getAttribute("daftarKategori");
+    List<Resep> listResep = (List<Resep>) request.getAttribute("daftarResep");
     String successMessage = (String) request.getAttribute("pesanSukses");
     String errorMessage = (String) request.getAttribute("pesanError");
     String role = (String) request.getAttribute("role");
     
     if (listMenu == null) listMenu = new ArrayList<>();
     if (listKategori == null) listKategori = new ArrayList<>();
+    if (listResep == null) listResep = new ArrayList<>();
+    
+    BahanBakuDAO bahanDAO = new BahanBakuDAO();
+    List<BahanBaku> listBahan = bahanDAO.getAll();
+    if (listBahan == null) listBahan = new ArrayList<>();
     
     String contextPath = request.getContextPath();
     String menuUrl = contextPath + "/MenuController";
@@ -91,10 +100,13 @@
                                             
                                             Integer hargaJual = menu.getHargaJual();
                                             Float margin = 0.0f;
-                                            Float marginPersen = 0.0f;
+                                            Float marginPersen = menu.getMarginPersen() != null ? menu.getMarginPersen() : 0.0f;
                                             if (hargaJual != null && hpp != null && hpp > 0) {
                                                 margin = hargaJual.floatValue() - hpp;
-                                                marginPersen = (margin / hpp) * 100;
+                                                // Gunakan margin persen dari database jika ada, jika tidak hitung dari margin
+                                                if (marginPersen == 0.0f && hpp > 0) {
+                                                    marginPersen = (margin / hpp) * 100;
+                                                }
                                             }
                                             
                                             String kategoriNama = "-";
@@ -113,16 +125,27 @@
                                             <td><%= kategoriNama %></td>
                                             <td class="text-end">
                                                 <% if (hpp > 0) { %>
-                                                    Rp <%= String.format("%,.0f", hpp) %>
+                                                    <strong>Rp <%= String.format("%,d", Math.round(hpp)) %></strong>
+                                                    <br><small class="text-muted">per porsi</small>
+                                                <% } else { %>
+                                                    <span class="text-muted">Belum ada resep</span>
+                                                <% } %>
+                                            </td>
+                                            <td class="text-end">
+                                                <% if (hargaJual != null && hargaJual > 0) { %>
+                                                    <strong>Rp <%= String.format("%,d", hargaJual) %></strong>
+                                                    <br><small class="text-muted">per porsi</small>
                                                 <% } else { %>
                                                     <span class="text-muted">-</span>
                                                 <% } %>
                                             </td>
                                             <td class="text-end">
-                                                <%= hargaJual != null ? "Rp " + String.format("%,d", hargaJual) : "-" %>
-                                            </td>
-                                            <td class="text-end">
-                                                <% if (hargaJual != null && hpp > 0) { %>
+                                                <% if (marginPersen != null && marginPersen > 0) { %>
+                                                    <span class="text-success"><%= String.format("%.1f", marginPersen) %>%</span>
+                                                    <% if (hargaJual != null && hpp > 0) { %>
+                                                        <br><small class="text-muted">Rp <%= String.format("%,.0f", margin) %></small>
+                                                    <% } %>
+                                                <% } else if (hargaJual != null && hpp > 0) { %>
                                                     <% if (margin >= 0) { %>
                                                         <span class="text-success">Rp <%= String.format("%,.0f", margin) %></span>
                                                         <br><small class="text-muted">(<%= String.format("%.1f", marginPersen) %>%)</small>
@@ -189,10 +212,19 @@
                         <input type="text" class="form-control" id="namaMenuBaru" name="namaMenu" placeholder="Masukkan nama menu" required maxlength="100">
                     </div>
                     <div class="mb-3">
-                        <label for="hargaJualBaru" class="form-label">
-                            Harga Jual <span class="text-danger">*</span>
+                        <label for="marginPersenBaru" class="form-label">
+                            Margin (%) <span class="text-danger">*</span>
                         </label>
-                        <input type="number" class="form-control" id="hargaJualBaru" name="hargaJual" placeholder="Masukkan harga jual" min="0" required>
+                        <input type="number" class="form-control" id="marginPersenBaru" name="marginPersen" 
+                               placeholder="Masukkan margin dalam persen (contoh: 50 untuk 50%)" 
+                               step="0.01" min="0" required>
+                        <small class="form-text text-muted">Harga jual akan dihitung otomatis setelah resep dibuat: HPP + (HPP × Margin%)</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Harga Jual (Otomatis)</label>
+                        <input type="text" class="form-control" id="hargaJualPreview" readonly 
+                               placeholder="Akan dihitung setelah resep dibuat" value="-">
+                        <small class="form-text text-muted">Harga jual akan terisi otomatis setelah resep dibuat dan HPP dihitung</small>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsiBaru" class="form-label">

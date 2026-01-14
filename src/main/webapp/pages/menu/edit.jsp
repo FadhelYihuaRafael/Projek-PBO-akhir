@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="dao.MenuDAO"%>
 <%@page import="dao.KategoriMenuDAO"%>
+<%@page import="dao.ResepDAO"%>
 <%@page import="model.Menu"%>
 <%@page import="model.KategoriMenu"%>
 <%@page import="java.util.List"%>
@@ -46,6 +47,21 @@
         listKategori = kategoriDAO.getAll();
     } catch (Exception e) {
         e.printStackTrace();
+    }
+    
+    // Hitung HPP untuk preview harga jual
+    Float hpp = 0.0f;
+    Integer hargaJualTerhitung = 0;
+    if (menu != null && menu.getId() != null) {
+        try {
+            ResepDAO resepDAO = new ResepDAO();
+            hpp = resepDAO.hitungHPPByMenuId(menu.getId());
+            if (hpp != null && hpp > 0 && menu.getMarginPersen() != null) {
+                hargaJualTerhitung = Math.round(hpp + (hpp * menu.getMarginPersen() / 100));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     // set attribute
@@ -112,8 +128,27 @@
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="hargaJual" class="form-label">Harga Jual</label>
-                                            <input type="number" class="form-control" id="hargaJual" name="hargaJual" value="<%= menu.getHargaJual() != null ? menu.getHargaJual() : "" %>" min="0" required>
+                                            <label for="marginPersen" class="form-label">
+                                                Margin (%) <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="number" class="form-control" id="marginPersen" name="marginPersen" 
+                                                   value="<%= menu.getMarginPersen() != null ? menu.getMarginPersen() : "" %>" 
+                                                   placeholder="Masukkan margin dalam persen (contoh: 50 untuk 50%)" 
+                                                   step="0.01" min="0" required>
+                                            <small class="form-text text-muted">Harga jual akan dihitung otomatis: HPP + (HPP × Margin%)</small>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">HPP</label>
+                                            <input type="text" class="form-control" readonly 
+                                                   value="<%= hpp != null && hpp > 0 ? "Rp " + String.format("%,.0f", hpp) : "Belum ada resep" %>">
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">Harga Jual (Otomatis)</label>
+                                            <input type="text" class="form-control" readonly 
+                                                   value="<%= hargaJualTerhitung > 0 ? "Rp " + String.format("%,d", hargaJualTerhitung) : "Akan dihitung setelah resep dibuat" %>">
+                                            <small class="form-text text-muted">Harga jual dihitung dari HPP + (HPP × Margin%)</small>
                                         </div>
                                         
                                         <div class="mb-3">

@@ -78,13 +78,14 @@
                                     <th>Menu</th>
                                     <th>Bahan Baku</th>
                                     <th>Jumlah Dibutuhkan</th>
+                                    <th>Produk yang Dihasilkan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% if (listResep.isEmpty()) { %>
                                     <tr>
-                                        <td colspan="5" class="text-center text-muted py-4">
+                                        <td colspan="6" class="text-center text-muted py-4">
                                             Belum ada data resep. Silakan tambahkan resep baru.
                                         </td>
                                     </tr>
@@ -125,6 +126,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <%= resep.getJumlahDibutuhkan() != null ? String.format("%.2f", resep.getJumlahDibutuhkan()) + " " + satuan : "-" %>
+                                            </td>
+                                            <td class="text-center">
+                                                <%= resep.getProdukYangDihasilkan() != null ? String.format("%.2f", resep.getProdukYangDihasilkan()) : "-" %>
                                             </td>
                                             <td class="text-center">
                                                 <a href="<%= contextPath %>/pages/resep/edit.jsp?id=<%= resep.getId() %>" class="btn btn-warning btn-sm">
@@ -191,6 +195,12 @@
                             Jumlah Dibutuhkan <span class="text-danger">*</span>
                         </label>
                         <input type="number" class="form-control" id="jumlahBaru" name="jumlah" placeholder="Masukkan jumlah" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="produkYangDihasilkanBaru" class="form-label">
+                            Produk yang Dihasilkan <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control" id="produkYangDihasilkanBaru" name="produkYangDihasilkan" placeholder="Masukkan jumlah produk yang dihasilkan" step="0.01" min="0.01" required>
                     </div>
                 </div>
                 <div class="modal-footer">

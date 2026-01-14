@@ -135,6 +135,11 @@
                                             <input type="number" class="form-control" id="jumlah" name="jumlah" value="<%= resep.getJumlahDibutuhkan() != null ? resep.getJumlahDibutuhkan() : "" %>" step="0.01" min="0.01" required>
                                         </div>
                                         
+                                        <div class="mb-3">
+                                            <label for="produkYangDihasilkan" class="form-label">Produk yang Dihasilkan</label>
+                                            <input type="number" class="form-control" id="produkYangDihasilkan" name="produkYangDihasilkan" value="<%= resep.getProdukYangDihasilkan() != null ? resep.getProdukYangDihasilkan() : "" %>" step="0.01" min="0.01" required>
+                                        </div>
+                                        
                                         <div class="d-flex gap-2">
                                             <button type="submit" class="btn btn-primary">
                                                 <iconify-icon icon="mdi:content-save"></iconify-icon>
