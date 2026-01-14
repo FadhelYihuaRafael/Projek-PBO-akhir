@@ -82,15 +82,9 @@
             </span>
             <span class="hide-menu">Menu</span>
           </a>
-        </li>
-        
-        
-        <li class="nav-small-cap">
-          <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6"></iconify-icon>
-          <span class="hide-menu">AUTH</span>
-        </li>
+      </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="../login_1.jsp" aria-expanded="false">
+          <a class="sidebar-link" href="<%= request.getContextPath() %>/LogoutController" aria-expanded="false">
             <span>
               <iconify-icon icon="solar:login-3-bold-duotone" class="fs-6"></iconify-icon>
             </span>
