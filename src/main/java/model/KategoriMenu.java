@@ -2,6 +2,7 @@ package model;
 
 /**
  * Model class untuk tabel kategori_menu
+ 
  * @author Admin
  */
 public class KategoriMenu {

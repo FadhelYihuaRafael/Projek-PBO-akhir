@@ -17,6 +17,10 @@ public class UserDAO {
         
         try {
             koneksi = KoneksiDB.getConnection();
+            System.out.println("DB NAME   : " + koneksi.getCatalog());
+            System.out.println("DB USER   : " + koneksi.getMetaData().getUserName());
+            System.out.println("DB URL    : " + koneksi.getMetaData().getURL());
+
             
             if (koneksi == null) {
                 return null;
@@ -70,6 +74,7 @@ public class UserDAO {
         }
         
         User user = cariUserByEmail(email);
+        
         
         if (user == null) {
             return false;

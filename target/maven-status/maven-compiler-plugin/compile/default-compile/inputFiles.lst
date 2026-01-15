@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\LoginController.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\MenuController.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\KategoriMenuDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Menu.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\ResepDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\SupplierDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\KategoriMenu.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Supplier.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\KategoriMenuController.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\resources\JakartaEE10Resource.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\ResepController.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\tsting.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\BahanBaku.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\SupplierController.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\MenuDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\UserDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\BahanBakuDAO.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\User.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\util\KoneksiDB.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\kelompok_6\projek_pbo_akhir\JakartaRestConfiguration.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\Resep.java
+C:\Users\MSI\OneDrive\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\BahanBakuController.java
+=======
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\controller\MenuController.java
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\ResepDAO.java
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\model\KategoriMenu.java
@@ -23,3 +47,4 @@ C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\control
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\util\PricingCalculatorTest.java
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\dao\UserDAO.java
 C:\Users\rizaa\Documents\NetBeansProjects\Projek-PBO-akhir\src\main\java\util\PricingCalculator.java
+>>>>>>> d6f7c0c2f9be581119415f3c825c9a70b4bf7502
